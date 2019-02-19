@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>ECE1779 Assignment 1 - Profile</title>
+  </head>
+
+  <body>
+    <h1>Good day, {{username if username != None}}!</h1>
+    <form action='{{url_for('logout')}}' method="get">
+            <input type="submit" value="Logout">
+        </form>
+
+     <form action="{{url_for('upload')}}"  enctype="multipart/form-data" method="post">
+
+   	Click "Browse" to upload an image <input type="file" name="image_file"><br />
+
+   	<input type="submit" value="Send">
+	<input type="reset">
+    </form>
+    <div>{{ret_msg if ret_msg != None}}</div>
+
+    {% for image in images %}
+        <br/><br/>
+        <img src='{{image[2]}}' width="256" height=""256"/>
+        <img src='{{image[3]}}' width="256" height=""256"/>
+        <form action="{{url_for('delete_image',id=image[0])}}" method='post' onsubmit='return confirm("Are you sure?")'>
+            <input type='submit' value='Delete' />
+        </form>
+    {% endfor %}
+
+  </body>
+</html>

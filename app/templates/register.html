@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ECE1779 Assignment 1 - Register</title>
+    </head>
+
+      <body>
+          <div class='error'>{{ret_msg if ret_msg != None}}</div>
+
+        <h1>Create a new account</h1>
+         <form action='{{url_for('register')}}' method="post">
+             Username <input type="text" name="username" value="{{username if username  != None}}"><br>
+             Password <input type="password" name="password" value="{{password if password  != None}}"><br>
+             Confirm Password <input type="password" name="confirm_password" value="{{password if password  != None}}"><br>
+
+        <input type="submit" value="Register">
+        <input type="reset">
+        </form>
+
+    </body>
+</html>

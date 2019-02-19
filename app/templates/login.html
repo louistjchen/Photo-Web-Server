@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ECE1779 Assignment 1 - Login</title>
+    </head>
+
+    <body>
+        <div class='error'>{{ret_msg if ret_msg != None}}</div>
+
+        <h1>Welcome to ECE1779 Assignment 1</h1>
+
+        <form action='{{url_for('login')}}' method="post">
+            Username <input type="text" name="username" value="{{username if username  != None}}"><br>
+            Password <input type="password" name="password" value="{{password if password  != None}}"><br>
+            <input type="submit" value="Login">
+        </form>
+        <form action='{{url_for('register_form')}}' method="get">
+            <input type="submit" value="Register">
+        </form>
+
+    </body>
+</html>
