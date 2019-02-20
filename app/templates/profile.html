@@ -1,35 +1,62 @@
 <!DOCTYPE HTML>
 
+<link rel="stylesheet" href="../static/css/profile.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+
+<style>
+    body {
+        background-image: url('../static/assets/background.jpg');
+    }
+
+</style>
 <html>
   <head>
     <title>ECE1779 Assignment 1 - Profile</title>
 
   </head>
 
-  <body>
-    <h1>Good day, {{username if username != None}}!</h1>
-    <form action='{{url_for('logout')}}' method="get">
-            <input type="submit" value="Logout">
+  <body >
+  <div class="container">
+    <h1 style="color:white;display: inline-block;">Good day, {{username if username != None}}!</h1>
+
+
+
+
+    <form action='{{url_for('logout')}}' method="get" style=" display: inline-block;margin-left: 20px;">
+        <button type="submit" style="background: transparent;border: none;padding: 0px;">
+            <i class="fas fa-sign-out-alt" style="font-size: 30px; color:white"></i>
+        </button>
         </form>
+
+
+
+
 
      <form action="{{url_for('upload')}}"  enctype="multipart/form-data" method="post">
 
-   	Click "Browse" to upload an image <input type="file" name="image_file"><br />
+         <input type="file" name="image_file" onchange="form.submit()" style="background: transparent;border: none;padding: 0px;">
+{#             <i class="fas fa-folder-plus" style="font-size: 30px; margin-left: 20px;margin-right: 20px; color:white"></i>#}
+{#        </button>#}
+{#         //TODO#}
 
-   	<input type="submit" value="Send">
-	<input type="reset">
     </form>
-    <div>{{ret_msg if ret_msg != None}}</div>
 
+
+
+
+    <div>{{ret_msg if ret_msg != None}}</div>
+<div style="text-align: center">
     {% for image in images %}
         <br/><br/>
-        <img src='{{image[2]}}' width="256" height=""256"/>
-        <img src='{{image[3]}}' width="256" height=""256"/>
+        <img src='{{image[2]}}' width="48%" height="auto"/>
+        <img src='{{image[3]}}' width="48%" height="auto"/>
         <form action="{{url_for('delete_image',id=image[0])}}" method='post' onsubmit='return confirm("Are you sure?")'>
             <input type='submit' value='Delete' />
         </form>
     {% endfor %}
 
+</div>
+</div>
   </body>
 </html>
