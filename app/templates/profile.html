@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="../static/css/profile.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
 <style>
@@ -11,52 +12,61 @@
 
 </style>
 <html>
-  <head>
+<head>
     <title>ECE1779 Assignment 1 - Profile</title>
 
-  </head>
+</head>
 
-  <body >
-  <div class="container">
-    <h1 style="color:white;display: inline-block;">Good day, {{username if username != None}}!</h1>
+<body>
+<div class="container">
+    <h1 style="color:white;display: inline-block;">Good day, {{ username if username != None }}!</h1>
 
-
-
-
-    <form action='{{url_for('logout')}}' method="get" style=" display: inline-block;margin-left: 20px;">
+    <form action='{{ url_for('logout') }}' method="get" style=" display: inline-block;margin-left: 20px;">
         <button type="submit" style="background: transparent;border: none;padding: 0px;">
             <i class="fas fa-sign-out-alt" style="font-size: 30px; color:white"></i>
         </button>
-        </form>
+    </form>
 
 
+    <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="post">
 
-
-
-     <form action="{{url_for('upload')}}"  enctype="multipart/form-data" method="post">
-
-         <input type="file" name="image_file" onchange="form.submit()" style="background: transparent;border: none;padding: 0px;">
-{#             <i class="fas fa-folder-plus" style="font-size: 30px; margin-left: 20px;margin-right: 20px; color:white"></i>#}
-{#        </button>#}
-{#         //TODO#}
+        <input type="file" name="image_file" onchange="form.submit()"
+               style="background: transparent;border: none;padding: 0px; font-size:16px">
 
     </form>
 
 
+    <div style="visibility: {{ hidden }}" class="alert alert-success" role="alert">{{ ret_msg if ret_msg != None }}</div>
 
 
-    <div style="visibility: {{hidden}}">{{ret_msg if ret_msg != None}}</div>
-<div style="text-align: center">
-    {% for image in images %}
-        <br/><br/>
-        <img src='{{image[2]}}' width="48%" height="auto"/>
-        <img src='{{image[3]}}' width="48%" height="auto"/>
-        <form action="{{url_for('delete_image',id=image[0])}}" method='post' onsubmit='return confirm("Are you sure?")'>
-            <input type='submit' value='Delete' />
-        </form>
-    {% endfor %}
+    <div style="text-align: center">
+        {% for image in images %}
+            <br/><br/>
+            <div>
+                <a class="_tooltip" style="margin-right: 50px;">
+                    <img src="{{ image[2] }}" class="original"/>
 
+                    <span>
+                        <img src="{{ image[2] }}" class="crop"/>
+                    </span>
+                </a>
+                <a class="_tooltip">
+                    <img src="{{ image[3] }}" class="original"/>
+                    <span>
+                        <img src="{{ image[3] }}" class="crop"/>
+                    </span>
+                </a>
+            </div>
+
+            <form action="{{ url_for('delete_image',id=image[0]) }}" method='post'
+                  onsubmit='return confirm("Do you want to delete the image?")' class="delete-form">
+                <button type='submit' value='Delete' style="background: transparent;border: none;padding: 0px;">
+                    <i class="fas fa-trash-alt" style="font-size: 30px; color:white"></i>
+                </button>
+            </form>
+        {% endfor %}
+
+    </div>
 </div>
-</div>
-  </body>
+</body>
 </html>

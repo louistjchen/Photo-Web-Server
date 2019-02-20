@@ -49,8 +49,9 @@ def register():
     cursor.execute("SELECT COUNT(1) FROM users WHERE username = '{}';".format(username))
 
     if cursor.fetchone()[0]:
-        session['ret_msg'] = "Error: Username has been used"
-        return redirect(url_for('main'))
+        ret_msg = "Error: Username has been used"
+        return render_template("register.html", ret_msg=ret_msg, username="", password="", hidden="visible")
+
 
     cursor.execute(''' INSERT INTO users (username,password,salt)
                                VALUES (%s,%s,%s)
