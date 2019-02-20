@@ -1,23 +1,40 @@
-
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="../static/css/login.css">
+
+<style>
+    body {
+        background-image: url('../static/assets/back.jpg');
+    }
+
+</style>
+
 <html>
-    <head>
-        <title>ECE1779 Assignment 1 - Login</title>
-    </head>
+<head>
+    <title>ECE1779 Assignment 1 - Login</title>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
 
-    <body>
-        <div class='error'>{{ret_msg if ret_msg != None}}</div>
+</head>
 
-        <h1>Welcome to ECE1779 Assignment 1</h1>
+<body class="text-center">
 
-        <form action='{{url_for('login')}}' method="post">
-            Username <input type="text" name="username" value="{{username if username  != None}}"><br>
-            Password <input type="password" name="password" value="{{password if password  != None}}"><br>
-            <input type="submit" value="Login">
-        </form>
-        <form action='{{url_for('register_form')}}' method="get">
-            <input type="submit" value="Register">
-        </form>
+<form action='{{ url_for('login') }}' method="post" class="form-signin">
 
-    </body>
+    <div class="alert alert-danger" role="alert" style="visibility: {{hidden}}">{{ ret_msg if ret_msg != None }}</div>
+
+    <h1 class="h3 mb-3 font-weight-normal" style="color:white">Login</h1><br>
+
+    <input type="text" placeholder="Username" name="username" value="{{ username if username  != None }}"
+           class="form-control"><br>
+    <input type="password" placeholder="Password" name="password" value="{{ password if password  != None }}"
+           class="form-control"><br><br>
+    <input type="submit" value="Login" class="btn btn-lg btn-secondary btn-block" style="margin-bottom: 20px">
+    <span style="color:white">Not a member?</span><a href="/register/form"> Register</a>
+
+</form>
+
+
+</body>
+
 </html>

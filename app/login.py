@@ -29,11 +29,6 @@ def teardown_db(exception):
         db.close()
 
 
-@webapp.route('/login/form', methods=['GET'])
-def login_form():
-    return render_template("login.html", ret_msg="")
-
-
 @webapp.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username', "")
@@ -43,11 +38,11 @@ def login():
     for c in username:
         if c not in username_char:
             ret_msg = "Error: Username must not contain character: " + c
-            return render_template("login.html", ret_msg=ret_msg, username=username, password="")
+            return render_template("login.html", ret_msg=ret_msg, hidden="visible", username=username, password="")
     for c in password:
         if c not in password_char:
             ret_msg = "Error: Password must not contain character: " + c
-            return render_template("login.html", ret_msg=ret_msg, username=username, password="")
+            return render_template("login.html", ret_msg=ret_msg, hidden="visible", username=username, password="")
 
     cnx = get_db()
     cursor = cnx.cursor()
@@ -56,7 +51,7 @@ def login():
 
     if not cursor.fetchone()[0]:
         ret_msg = "Error: No such user"
-        return render_template("login.html", ret_msg=ret_msg, username="", password="")
+        return render_template("login.html", ret_msg=ret_msg, hidden="visible", username="", password="")
 
     cursor.execute("SELECT salt from users WHERE username = '{}';".format(username))
     salt = cursor.fetchone()[0]
@@ -67,4 +62,4 @@ def login():
         return redirect(url_for('main'))
     else:
         ret_msg = "Error: Password wrong"
-        return render_template("login.html", ret_msg=ret_msg, username="", password="")
+        return render_template("login.html", ret_msg=ret_msg, hidden="visible", username="", password="")

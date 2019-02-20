@@ -68,7 +68,7 @@ def upload():
 
     # create a directory for use if not exist
     username = session['username']
-    directory = 'app/static/' + username + "/"
+    directory = 'app/static/users/' + username + "/"
     if not os.path.exists(directory):
         os.makedirs(directory)
         print(directory)

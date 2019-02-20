@@ -13,4 +13,4 @@ def main():
         images = retrieve_images(username)
         return render_template("profile.html", username=username, images=images)
     else:
-        return render_template("login.html", username="", password="")
+        return render_template("login.html", username="", password="", hidden="hidden")
