@@ -1,33 +1,10 @@
 from flask import render_template, redirect, url_for, request, g, session
-from app import webapp
-from app.config import db_config
+from app.db import *
 
 import os
 import time
 import datetime
 import cv2 as cv
-import mysql.connector
-
-def connect_to_database():
-    return mysql.connector.connect(user=db_config['user'],
-                                   password=db_config['password'],
-                                   host=db_config['host'],
-                                   database=db_config['database']
-                                   )
-
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = connect_to_database()
-    return db
-
-
-@webapp.teardown_appcontext
-def teardown_db(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
 
 def get_image_extension(name):
     ret = ""
@@ -49,6 +26,9 @@ def retrieve_images(username):
 @webapp.route('/profile', methods=['POST'])
 # Upload a new image and tranform it
 def upload():
+    ret_msg = None
+    session.pop('ret_msg', None)
+
     # check if the post request has the file part
     if 'image_file' not in request.files:
         ret_msg = 'Error: Missing uploaded file'
@@ -71,7 +51,6 @@ def upload():
     directory = 'app/static/users/' + username + "/"
     if not os.path.exists(directory):
         os.makedirs(directory)
-        print(directory)
 
     # set filename as timestamp
     ts = time.time()
@@ -111,27 +90,34 @@ def upload():
 
     # retrieve all images associated with username from database
     images = retrieve_images(username)
+    session['ret_msg'] = ret_msg
+    return redirect(url_for('main'))
     return render_template("profile.html", username=username, ret_msg=ret_msg, images=images)
 
 
 @webapp.route('/profile/delete/<int:id>', methods=['POST'])
 # Deletes the specified student from the database.
 def delete_image(id):
+    session.pop('ret_msg', None)
+
     cnx = get_db()
     cursor = cnx.cursor()
 
     cursor.execute("SELECT * FROM photos WHERE id = '{}';".format(id))
     row = cursor.fetchone()
     if row:
-        os.remove(row[2])
-        os.remove(row[3])
+        if os.path.isfile(row[2]):
+            os.remove(row[2])
+        if os.path.isfile(row[3]):
+            os.remove(row[3])
 
     cursor.execute("DELETE FROM photos WHERE id = '{}';".format(id))
     cnx.commit()
+    session['ret_msg'] = "Image is succesfully deleted!\n"
     return redirect(url_for('main'))
 
-@webapp.route('/logout')
+@webapp.route('/logout', methods=['GET'])
 def logout():
-    # remove the username from the session if it is there
     session.pop('username', None)
+    session.pop('ret_msg', None)
     return redirect(url_for('main'))

@@ -15,7 +15,7 @@
    <body class="text-center">
       <form action='{{ url_for('register') }}' method="post" class="form-signin">
       <div class="alert alert-danger" role="alert"
-         style="visibility: {{ hidden }}">{{ error_msg if error_msg != None }}</div>
+         style="visibility: {{ hidden }}">{{ ret_msg if ret_msg != None }}</div>
       <h1 class="h3 mb-3 font-weight-normal" style="color: white">Create a new account</h1>
       <br>
       <input type="text" placeholder="Username" name="username" value="{{ username if username  != None }}"
