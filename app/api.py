@@ -3,7 +3,7 @@ import os
 import time
 
 import cv2 as cv
-from flask import request
+from flask import request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.db import *
@@ -25,15 +25,15 @@ def api_register():
     password = request.form.get('password', "")
 
     if username == "" or password == "":
-        return "Error: All fields are required!\n"
+        return jsonify({"HTTP Status Code" : 400, "Message" : "Error: All fields are required!"})
 
     # input string validation
     for c in username:
         if c not in username_char:
-            return "Error: Username must not contain character: " + c + "\n"
+            return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Username must not contain character: " + c})
     for c in password:
         if c not in password_char:
-            return "Error: Password must not contain character: " + c + "\n"
+            return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Password must not contain character: " + c})
 
     salt = generate_salt()
     hashed_password = generate_password_hash(password + salt)
@@ -44,14 +44,14 @@ def api_register():
     cursor.execute("SELECT COUNT(1) FROM users WHERE username = '{}';".format(username))
 
     if cursor.fetchone()[0]:
-        return "Error: Username has been used\n"
+        return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Username has been used"})
 
     cursor.execute(''' INSERT INTO users (username,password,salt)
                                VALUES (%s,%s,%s)
             ''', (username, hashed_password, salt))
     cnx.commit()
 
-    return "Success\n"
+    return jsonify({'HTTP Status Code' : 200, "Message" : "Success: User is registered successfully"})
 
 
 @webapp.route('/api/upload', methods=['POST'])
@@ -62,17 +62,17 @@ def api_upload():
 
     # check if the post request has the file part
     if 'file' not in request.files:
-        return "Error: Missing uploaded file\n"
+        return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Missing uploaded file"})
     new_file = request.files['file']
 
     # authenticate user
     # input string validation
     for c in username:
         if c not in username_char:
-            return "Error: Username must not contain character: " + c + "\n"
+            return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Username must not contain character: " + c})
     for c in password:
         if c not in password_char:
-            return "Error: Password must not contain character: " + c + "\n"
+            return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Password must not contain character: " + c})
 
     cnx = get_db()
     cursor = cnx.cursor()
@@ -80,14 +80,14 @@ def api_upload():
     cursor.execute("SELECT COUNT(1) FROM users WHERE username = '{}';".format(username))
 
     if not cursor.fetchone()[0]:
-        return "Error: No such user\n"
+        return jsonify({'HTTP Status Code' : 401, "Message" : "Error: No such user"})
 
     cursor.execute("SELECT salt from users WHERE username = '{}';".format(username))
     salt = cursor.fetchone()[0]
     cursor.execute("SELECT password FROM users WHERE username = '{}';".format(username))
 
     if check_password_hash(cursor.fetchone()[0], password + salt) == False:
-        return "Error: Password wrong\n"
+        return jsonify({'HTTP Status Code' : 401, "Message" : "Error: Password wrong"})
 
     # upload file onto database
     filename = new_file.filename
@@ -98,7 +98,7 @@ def api_upload():
     # if user does not select file, browser also
     # submit a empty part without filename
     if filename == '':
-        return "Error: Missing file name\n"
+        return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Missing file name"})
 
     # create a directory for use if not exist
     directory = 'app/static/users/' + username + "/"
@@ -140,4 +140,4 @@ def api_upload():
             ''', (username, fname1, fname2))
     cnx.commit()
 
-    return "Success\n"
+    return jsonify({'HTTP Status Code' : 200, "Message" : "Success: Photo is uploaded successfully"})
