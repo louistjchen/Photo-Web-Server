@@ -1,10 +1,12 @@
-from flask import render_template, redirect, url_for, request, g, session
-from app.db import *
-
+import datetime
 import os
 import time
-import datetime
+
 import cv2 as cv
+from flask import render_template, redirect, url_for, request, session
+
+from app.db import *
+
 
 def get_image_extension(name):
     ret = ""
@@ -14,6 +16,7 @@ def get_image_extension(name):
             return ret
     return ""
 
+
 def retrieve_images(username):
     cnx = get_db()
     cursor = cnx.cursor()
@@ -22,6 +25,7 @@ def retrieve_images(username):
     for row in cursor:
         ret.append([row[0], row[1], row[2][4:], row[3][4:]])
     return ret
+
 
 @webapp.route('/profile', methods=['POST'])
 # Upload a new image and tranform it
@@ -64,7 +68,7 @@ def upload():
 
     cwd = os.getcwd()
     face_cascade = cv.CascadeClassifier(cwd + '/app/train_file/face.xml')
-#    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
+    #    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
     img = cv.imread(fname1)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
@@ -73,9 +77,9 @@ def upload():
         cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
         roi_gray = gray[y:y + h, x:x + w]
         roi_color = img[y:y + h, x:x + w]
-#        eyes = eye_cascade.detectMultiScale(roi_gray)
-#        for (ex, ey, ew, eh) in eyes:
-#            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+    #        eyes = eye_cascade.detectMultiScale(roi_gray)
+    #        for (ex, ey, ew, eh) in eyes:
+    #            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
     cv.imwrite(fname2, img)
     ret_msg = 'Success: Image has been successfully uploaded. Please see below.'
@@ -114,6 +118,7 @@ def delete_image(id):
     cnx.commit()
     session['ret_msg'] = "Image is succesfully deleted!\n"
     return redirect(url_for('main'))
+
 
 @webapp.route('/logout', methods=['GET'])
 def logout():

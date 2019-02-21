@@ -1,5 +1,5 @@
-
 from flask import Flask
+
 from app.macro import secret_key
 
 webapp = Flask(__name__)

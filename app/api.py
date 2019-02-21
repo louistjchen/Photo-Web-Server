@@ -1,14 +1,12 @@
-from flask import render_template, redirect, url_for, request, g, session
-from app import webapp
-from werkzeug.security import generate_password_hash, check_password_hash
-from app.macro import *
-from app.db import *
-
-import os
-import cv2 as cv
-import random
-import time
 import datetime
+import os
+import time
+
+import cv2 as cv
+from flask import request
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from app.db import *
 
 
 def get_image_extension(name):
@@ -18,6 +16,7 @@ def get_image_extension(name):
         if c == '.':
             return ret
     return ""
+
 
 @webapp.route('/api/register', methods=['POST'])
 def api_register():
@@ -37,7 +36,7 @@ def api_register():
             return "Error: Password must not contain character: " + c + "\n"
 
     salt = generate_salt()
-    hashed_password = generate_password_hash(password+salt)
+    hashed_password = generate_password_hash(password + salt)
 
     cnx = get_db()
     cursor = cnx.cursor()
@@ -53,6 +52,7 @@ def api_register():
     cnx.commit()
 
     return "Success\n"
+
 
 @webapp.route('/api/upload', methods=['POST'])
 def api_upload():
@@ -117,7 +117,7 @@ def api_upload():
 
     cwd = os.getcwd()
     face_cascade = cv.CascadeClassifier(cwd + '/app/train_file/face.xml')
-#    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
+    #    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
     img = cv.imread(fname1)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
@@ -126,9 +126,9 @@ def api_upload():
         cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
         roi_gray = gray[y:y + h, x:x + w]
         roi_color = img[y:y + h, x:x + w]
-#        eyes = eye_cascade.detectMultiScale(roi_gray)
-#        for (ex, ey, ew, eh) in eyes:
-#            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+    #        eyes = eye_cascade.detectMultiScale(roi_gray)
+    #        for (ex, ey, ew, eh) in eyes:
+    #            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
     cv.imwrite(fname2, img)
 

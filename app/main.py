@@ -1,4 +1,5 @@
-from flask import render_template, redirect, url_for, request, g, session
+from flask import render_template, session
+
 from app import webapp
 from app.profile import retrieve_images
 

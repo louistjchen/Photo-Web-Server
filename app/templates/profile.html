@@ -36,13 +36,14 @@
     </form>
 
 
-    <div style="visibility: {{ hidden }}" class="alert alert-success" role="alert">{{ ret_msg if ret_msg != None }}</div>
+    <div style="visibility: {{ hidden }}" class="alert alert-success"
+         role="alert">{{ ret_msg if ret_msg != None }}</div>
 
 
     <div style="text-align: left">
-<div>
+        <div>
 
-        {% for image in images %}
+            {% for image in images %}
                 <a class="_tooltip" style="margin-right: 25px;"
 
                    href="/image/ {{ image[2].replace("/", "__") }}/{{ image[3].replace("/", "__") }}"
@@ -50,7 +51,7 @@
                 >
 
                     <div class="thumbnails">
-                    <img src="{{ image[2] }}" class="original" />
+                        <img src="{{ image[2] }}" class="original"/>
 
                     </div>
 
@@ -59,14 +60,14 @@
                     </span>
                 </a>
 
-            <form action="{{ url_for('delete_image',id=image[0]) }}" method='post'
-                  onsubmit='return confirm("Do you want to delete the image?")' class="delete-form">
-                <button type='submit' value='Delete' style="background: transparent;border: none;padding: 0px;">
-                    <i class="fas fa-trash-alt" style="font-size: 30px; color:white"></i>
-                </button>
-            </form>
-        {% endfor %}
-</div>
+                <form action="{{ url_for('delete_image',id=image[0]) }}" method='post'
+                      onsubmit='return confirm("Do you want to delete the image?")' class="delete-form">
+                    <button type='submit' value='Delete' style="background: transparent;border: none;padding: 0px;">
+                        <i class="fas fa-trash-alt" style="font-size: 30px; color:white"></i>
+                    </button>
+                </form>
+            {% endfor %}
+        </div>
     </div>
 </div>
 </body>
