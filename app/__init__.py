@@ -9,4 +9,5 @@ from app import main
 from app import login
 from app import register
 from app import profile
+from app import image
 from app import api

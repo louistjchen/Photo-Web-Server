@@ -92,7 +92,6 @@ def upload():
     images = retrieve_images(username)
     session['ret_msg'] = ret_msg
     return redirect(url_for('main'))
-    return render_template("profile.html", username=username, ret_msg=ret_msg, images=images)
 
 
 @webapp.route('/profile/delete/<int:id>', methods=['POST'])
