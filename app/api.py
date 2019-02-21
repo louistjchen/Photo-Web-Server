@@ -121,7 +121,11 @@ def api_upload():
     img = cv.imread(fname1)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    faces = None
+    try:
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    except:
+        return jsonify({'HTTP Status Code' : 400, "Message" : "Error: File not found"})
     for (x, y, w, h) in faces:
         cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
         roi_gray = gray[y:y + h, x:x + w]
