@@ -23,7 +23,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/main">Home</a>
       </li>
-        <li class="nav-item active">
+         <li class="nav-item active">
         <a class="nav-link" href="/upload">Upload</a>
       </li>
       <li class="nav-item active">
@@ -35,48 +35,47 @@
 </nav>
 
 <div class="container">
-    <h1 style="color:black;display: inline-block;">Good day, {{ username if username != None }}!</h1>
+    <h1 style="color:black;display: inline-block;margin-bottom: 50px">Please upload your image file.</h1>
+
+    <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="post">
+
+        <input type="file" name="image_file" onchange="form.submit()" accept="image/*"
+               style="background: transparent;border: none;padding: 0px; font-size:16px">
+
+    </form>
 
 
-    <div style="visibility: {{ hidden }}" class="alert alert-success"
+    <div style="visibility: {{ hidden }};margin-top: 10px" class="alert alert-success"
          role="alert">{{ ret_msg if ret_msg != None }}</div>
 
 
-    <div style="width:900px">
-
+    <div style="text-align: center;margin-top: 100px">
+        <div>
 
             {% for image in images %}
-                <a class="_tooltip" style="margin-right: 25px;"
+                    <div style="
+    max-width: 350px;
+    min-width: 200px;
+    display: inline-block;
+">
+                        <img src="{{ image[2] }}" class="original"/>
 
-                   href="/image/ {{ image[2].replace("/", "__") }}/{{ image[3].replace("/", "__") }}"
-
-                >
-
-                    <div class="thumbnails">
+                    </div>
+                 <div style="
+    max-width: 350px;
+    min-width: 200px;
+    display: inline-block;
+">
                         <img src="{{ image[3] }}" class="original"/>
 
                     </div>
 
-                    <span>
-                        <img src="{{ image[2] }}" class="crop"/>
-                    </span>
+
                 </a>
 
-                <form action="{{ url_for('delete_image',id=image[0]) }}" method='post'
-                      onsubmit='return confirm("Do you want to delete the image?")' class="delete-form">
-                    <button type='submit' value='Delete' style="background: transparent;border: none;padding: 0px;">
-                        <i class="fas fa-trash-alt" style="font-size: 30px; color:gray"></i>
-                    </button>
-                </form>
             {% endfor %}
-
+        </div>
     </div>
- <h3 style="
-    text-align: center;
-    margin-top: 150px;
-    color: gray;
-">{{ "Please upload your first image" if images == [] }}</h3>
-
 </div>
 </body>
 </html>

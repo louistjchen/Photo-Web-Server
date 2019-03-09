@@ -11,3 +11,4 @@ from app import register
 from app import profile
 from app import image
 from app import api
+from app import upload

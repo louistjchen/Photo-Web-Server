@@ -13,27 +13,26 @@
     }
 
     body {
-        background-image: url('/static/assets/background.jpg');
-
         display: -ms-flexbox;
-        display: flex;
         -ms-flex-align: center;
         align-items: center;
         background-position: center;
         background-size: cover;
+        background-color: rgba(150, 150, 150, 0.2);
 
     }
 
     .container {
-        background-color: rgba(150, 150, 150, 0.2);
         width: 900px;
         margin-left: auto;
         margin-right: auto;
         margin-top: 50px;
         margin-bottom: 50px;
         height: auto;
-        padding: 50px;
-        color: white;
+        padding: 100px;
+        color: black;
+        background-color: white;
+
     }
 
 </style>
@@ -43,12 +42,28 @@
     <title>Title</title>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PhotoWebServer</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/main">Home</a>
+      </li>
+         <li class="nav-item active">
+        <a class="nav-link" href="/upload">Upload</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
 <div class="container">
 
-    <h1 style="color:white;display: inline-block; margin-bottom: 20px;">Images</h1>
-
-    <a class="btn btn-light" href="/main" style=" display: table; margin-bottom: 20px;">Return to Profile Page</a>
-
+    <h1 style="color:black;display: inline-block; margin-bottom: 20px;">Images</h1>
 
     <div>
         <img src="{{ image1 }}" width="100%">
