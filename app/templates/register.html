@@ -2,21 +2,34 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="../static/css/login.css">
-<style>
-    body {
-        background-image: url('../static/assets/background.jpg');
-    }
-</style>
+
 <html>
 <head>
     <title>ECE1779 Assignment 1 - Register</title>
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
 </head>
 <body class="text-center">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PhotoWebServer</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/main">Login</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
 <form action='{{ url_for('register') }}' method="post" class="form-signin">
     <div class="alert alert-danger" role="alert"
          style="visibility: {{ hidden }}">{{ ret_msg if ret_msg != None }}</div>
-    <h1 class="h3 mb-3 font-weight-normal" style="color: white">Create a new account</h1>
+    <h1 class="h3 mb-3 font-weight-normal" >Create a new account</h1>
     <br>
     <input type="text" placeholder="Username" name="username" value="{{ username if username  != None }}"
            class="form-control"><br>
@@ -24,13 +37,13 @@
            class="form-control"><br>
     <input type="password" placeholder="Confirm Password" name="confirm_password"
            value="{{ password if password  != None }}" class="form-control"><br><br>
-    <input type="submit" value="Register" class="btn btn-lg btn-secondary btn-block" style="
+    <input type="submit" value="Register" class="btn btn-lg btn-primary btn-block" style="
          width: 45%;
          display: inline-block;
          margin-right: 10px;
          margin-bottom: 20px;
          ">
-    <input type="reset" class="btn btn-lg btn-secondary btn-block" style="
+    <input type="reset" class="btn btn-lg btn-primary btn-block" style="
          width: 45%;
          display: inline-block;
          margin-top: 0px;
@@ -39,7 +52,7 @@
 
          ">
 
-    <span style="color:white">Registered?</span><a href="/main"> Login</a>
+    <span style="color:black">Registered?</span><a href="/main"> Login</a>
 
 </form>
 </body>

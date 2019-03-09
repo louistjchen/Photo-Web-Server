@@ -1,16 +1,12 @@
 <!DOCTYPE HTML>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="../static/css/profile.css">
 
 
-<style>
-    body {
-        background-image: url('../static/assets/background.jpg');
-    }
-
-</style>
 <html>
 <head>
     <title>ECE1779 Assignment 1 - Profile</title>
@@ -18,19 +14,29 @@
 </head>
 
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">PhotoWebServer</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/main">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
 <div class="container">
-    <h1 style="color:white;display: inline-block;">Good day, {{ username if username != None }}!</h1>
-
-    <form action='{{ url_for('logout') }}' method="get" style=" display: inline-block;margin-left: 20px;">
-        <button type="submit" style="background: transparent;border: none;padding: 0px;">
-            <i class="fas fa-sign-out-alt" style="font-size: 30px; color:white"></i>
-        </button>
-    </form>
-
+    <h1 style="color:black;display: inline-block;">Good day, {{ username if username != None }}!</h1>
 
     <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="post">
 
-        <input type="file" name="image_file" onchange="form.submit()"
+        <input type="file" name="image_file" onchange="form.submit()" accept="image/*"
                style="background: transparent;border: none;padding: 0px; font-size:16px">
 
     </form>
@@ -63,7 +69,7 @@
                 <form action="{{ url_for('delete_image',id=image[0]) }}" method='post'
                       onsubmit='return confirm("Do you want to delete the image?")' class="delete-form">
                     <button type='submit' value='Delete' style="background: transparent;border: none;padding: 0px;">
-                        <i class="fas fa-trash-alt" style="font-size: 30px; color:white"></i>
+                        <i class="fas fa-trash-alt" style="font-size: 30px; color:gray"></i>
                     </button>
                 </form>
             {% endfor %}

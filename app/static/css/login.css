@@ -5,14 +5,14 @@ body {
 
 body {
     display: -ms-flexbox;
-    display: flex;
     -ms-flex-align: center;
     align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
 
     background-position: center;
     background-size: cover;
+
+    background-color: rgba(150, 150, 150, 0.2);
+
 }
 
 .form-signin {
@@ -20,7 +20,9 @@ body {
     max-width: 400px;
     padding: 15px;
     margin: auto;
-    background-color: rgba(150, 150, 150, 0.2);
+    margin-top: 200px;
+    background-color: white
+
 }
 
 .form-signin .checkbox {
