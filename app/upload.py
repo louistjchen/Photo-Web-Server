@@ -7,6 +7,7 @@ from flask import render_template, redirect, url_for, request, session
 
 from app.db import *
 
+import boto3
 
 def get_image_extension(name):
     ret = ""
@@ -77,18 +78,12 @@ def upload():
 
     cwd = os.getcwd()
     face_cascade = cv.CascadeClassifier(cwd + '/app/train_file/face.xml')
-    #    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
     img = cv.imread(fname1)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     for (x, y, w, h) in faces:
         cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-        roi_gray = gray[y:y + h, x:x + w]
-        roi_color = img[y:y + h, x:x + w]
-    #        eyes = eye_cascade.detectMultiScale(roi_gray)
-    #        for (ex, ey, ew, eh) in eyes:
-    #            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
     cv.imwrite(fname2, img)
     ret_msg = 'Success: Image has been successfully uploaded. Please see below.'
@@ -101,10 +96,14 @@ def upload():
             ''', (username, fname1, fname2))
     cnx.commit()
 
+    # upload 2 files onto s3
+    upload_file_to_s3(fname1, username+'/'+filename1)
+    upload_file_to_s3(fname2, username+'/'+filename2)
+
     # retrieve all images associated with username from database
     image = retrieve_last_image(username)
     session['ret_msg'] = ret_msg
-
+    #
     session.pop('ret_msg', None)
     hidden = "hidden" if ret_msg == "" else "visible"
     if 'username' in session:

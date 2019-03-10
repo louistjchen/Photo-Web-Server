@@ -1,4 +1,5 @@
 import random
+import boto3
 
 import mysql.connector
 from flask import g
@@ -10,6 +11,10 @@ db_config = {'user': 'ece1779',
              'password': 'secret',
              'host': '127.0.0.1',
              'database': 'a1'}
+
+AWSAccessKeyId = 'AKIAJJ3IQ3G2KAR3UR7Q'
+AWSSecretKey = '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'
+bucket = 'photo-web-server'
 
 
 def connect_to_database():
@@ -39,3 +44,13 @@ def generate_salt():
     for i in range(16):
         chars.append(random.choice(salt_char))
     return "".join(chars)
+
+
+def upload_file_to_s3(upload, filename):
+
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=AWSAccessKeyId,
+        aws_secret_access_key=AWSSecretKey
+    )
+    s3.upload_file(upload, bucket, filename)
