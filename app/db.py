@@ -7,10 +7,10 @@ from flask import g
 from app import webapp
 from app.macro import *
 
-db_config = {'user': 'ece1779',
-             'password': 'secret',
-             'host': '127.0.0.1',
-             'database': 'a1'}
+db_config = {'user': 'master',
+             'password': 'ece1779pass',
+             'host': 'ece1779.c3z9wvey8adq.us-east-2.rds.amazonaws.com',
+             'database': 'a2'}
 
 AWSAccessKeyId = 'AKIAJJ3IQ3G2KAR3UR7Q'
 AWSSecretKey = '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'
