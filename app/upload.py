@@ -7,8 +7,6 @@ from flask import render_template, redirect, url_for, request, session
 
 from app.db import *
 
-import boto3
-
 def get_image_extension(name):
     ret = ""
     for c in reversed(name):
@@ -16,16 +14,6 @@ def get_image_extension(name):
         if c == '.':
             return ret
     return ""
-
-
-def retrieve_last_image(username):
-    cnx = get_db()
-    cursor = cnx.cursor()
-    cursor.execute("SELECT * FROM photos WHERE username = '{}' ORDER BY id DESC LIMIT 1;".format(username))
-    ret = []
-    for row in cursor:
-        ret.append([row[0], row[1], row[2][4:], row[3][4:]])
-    return ret
 
 @webapp.route('/upload', methods=['GET'])
 def upload_():
@@ -51,8 +39,6 @@ def upload():
     new_file = request.files['image_file']
     filename = new_file.filename
     extension = get_image_extension(filename)
-    if extension == "":
-        extension = ".jpg"
 
     # if user does not select file, browser also
     # submit a empty part without filename
@@ -60,9 +46,8 @@ def upload():
         ret_msg = 'Error: Missing file name'
         return render_template("profile.html", ret_msg=ret_msg)
 
-    # create a directory for use if not exist
     username = session['username']
-    directory = 'app/static/users/' + username + "/"
+    directory = 'app/static/temp/'
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -88,24 +73,31 @@ def upload():
     cv.imwrite(fname2, img)
     ret_msg = 'Success: Image has been successfully uploaded. Please see below.'
 
+    filename1 = username + '/' + filename1
+    filename2 = username + '/' + filename2
+
     # write filename1 and filename2 associated with username into database
     cnx = get_db()
     cursor = cnx.cursor()
     cursor.execute(''' INSERT INTO photos (username,imagepath1,imagepath2)
                                VALUES (%s,%s,%s)
-            ''', (username, fname1, fname2))
+            ''', (username, filename1, filename2))
     cnx.commit()
 
     # upload 2 files onto s3
-    upload_file_to_s3(fname1, username+'/'+filename1)
-    upload_file_to_s3(fname2, username+'/'+filename2)
+    upload_file_to_s3(fname1, filename1)
+    upload_file_to_s3(fname2, filename2)
+
+    # deleting local cached files
+    os.remove(fname1)
+    os.remove(fname2)
 
     # retrieve all images associated with username from database
-    image = retrieve_last_image(username)
     session['ret_msg'] = ret_msg
-    #
-    session.pop('ret_msg', None)
     hidden = "hidden" if ret_msg == "" else "visible"
-    if 'username' in session:
-        username = session['username']
-    return render_template("upload.html", username=username, ret_msg=ret_msg, hidden=hidden, images=image)
+
+    image1 = download_file_from_s3(filename1)
+    image2 = download_file_from_s3(filename2)
+    images = [[image1, image2]]
+
+    return render_template("upload.html", username=username, ret_msg=ret_msg, hidden=hidden, images=images)

@@ -43,17 +43,13 @@
 
 
     <div style="width:900px">
-
-
             {% for image in images %}
                 <a class="_tooltip" style="margin-right: 25px;"
-
-                   href="/image/ {{ image[2].replace("/", "__") }}/{{ image[3].replace("/", "__") }}"
-
+                href="/image/{{image[0]}}"
                 >
 
                     <div class="thumbnails">
-                        <img src="{{ image[3] }}" class="original"/>
+                        <img src="{{ image[1] }}" class="original"/>
 
                     </div>
 
@@ -62,12 +58,6 @@
                     </span>
                 </a>
 
-                <form action="{{ url_for('delete_image',id=image[0]) }}" method='post'
-                      onsubmit='return confirm("Do you want to delete the image?")' class="delete-form">
-                    <button type='submit' value='Delete' style="background: transparent;border: none;padding: 0px;">
-                        <i class="fas fa-trash-alt" style="font-size: 30px; color:gray"></i>
-                    </button>
-                </form>
             {% endfor %}
 
     </div>

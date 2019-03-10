@@ -45,12 +45,27 @@ def generate_salt():
         chars.append(random.choice(salt_char))
     return "".join(chars)
 
-
-def upload_file_to_s3(upload, filename):
+def get_s3():
 
     s3 = boto3.client(
         "s3",
         aws_access_key_id=AWSAccessKeyId,
         aws_secret_access_key=AWSSecretKey
     )
+    return s3
+
+def upload_file_to_s3(upload, filename):
+
+    s3 = get_s3()
     s3.upload_file(upload, bucket, filename)
+
+def download_file_from_s3(filename):
+
+    s3 = get_s3()
+    url = s3.generate_presigned_url('get_object',
+                              Params={
+                                  'Bucket': bucket,
+                                  'Key': filename,
+                              },
+                              ExpiresIn=3600)
+    return url

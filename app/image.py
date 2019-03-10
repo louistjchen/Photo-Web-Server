@@ -10,14 +10,17 @@ def teardown_db(exception):
         db.close()
 
 
-@webapp.route('/image/<id1>/<id2>', methods=['GET'])
-def image(id1, id2):
-    print(id1)
+@webapp.route('/image/<id>', methods=['GET'])
+def image(id):
 
-    id1 = id1.replace("__", "/");
-    id2 = id2.replace("__", "/");
+    cnx = get_db()
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM photos WHERE id = '{}';".format(id))
+    original = None
+    face = None
+    for row in cursor:
+        original = download_file_from_s3(row[2])
+        face = download_file_from_s3(row[3])
+        break
 
-    id1 = id1.replace(" ", "");
-    id2 = id2.replace(" ", "");
-
-    return render_template("image.html", image1="/" + id1, image2="/" + id2)
+    return render_template("image.html", image1=original, image2=face)
