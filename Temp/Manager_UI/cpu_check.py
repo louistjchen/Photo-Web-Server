@@ -18,17 +18,15 @@ while True:
 
     instances = ec2.instances.filter(
       Filters=[
-          {'Name': 'placement-group-name',
-           'Values': ['A2_workerpool']
+          {'Name': 'tag:Group',
+           'Values': ['User Instance']
            },
 
           {'Name': 'instance-state-name',
            'Values': ['running']
            },
-      ]
-    )
+      ])
 
-    #instances = ec2.instances.all()
     cpu_stats_1 = []
     ids = []
 
@@ -68,24 +66,31 @@ while True:
     if average_load > max_threshold:
         # the number of new ec2 instances
         add_instance_num = int(len(cpu_stats_1) * (increase_rate-1)+1)
+        print("average_load > max_threshold")
         print(add_instance_num)
 
         # add instances
         for i in range(add_instance_num) :
+            print("adding instance...")
+            ts = calendar.timegm(time.gmtime())
             instances = ec2.create_instances(ImageId=config.ami_id, InstanceType='t2.small', MinCount=1, MaxCount=1,
                                              Monitoring={'Enabled': True},
-                                             Placement={'AvailabilityZone': 'us-east-1a', 'GroupName': 'A2_workerpool'},
+                                             Placement={'AvailabilityZone': 'us-east-1'},
                                              SecurityGroups=[
-                                                 'launch-wizard-11',
+                                                 'ece1779',
                                              ],
-                                             KeyName='ece1779_A2_user',
+                                             KeyName='ece1779',
                                              TagSpecifications=[
                                                  {
                                                      'ResourceType': 'instance',
                                                      'Tags': [
                                                          {
+                                                             'Key': 'Group',
+                                                             'Value': 'User Instance'
+                                                         },
+                                                         {
                                                              'Key': 'Name',
-                                                             'Value': 'Additional_workers'
+                                                             'Value': str(ts)
                                                          },
                                                      ]
                                                  },
@@ -111,7 +116,7 @@ while True:
             print(instance.id)
             client = boto3.client('elbv2')
             client.register_targets(
-                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
+                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
                 Targets=[
                     {
                         'Id': instance.id,
@@ -123,7 +128,7 @@ while True:
             # wait until finish
             waiter = client.get_waiter('target_in_service')
             waiter.wait(
-                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
+                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
                 Targets=[
                     {
                         'Id': instance.id,
@@ -135,6 +140,7 @@ while True:
 # option 2
     if average_load < min_threshold:
         minus_instance_num = int(len(cpu_stats_1) * (1-decrease_rate))
+        print("average_load < max_threshold")
         print(minus_instance_num)
 
         if minus_instance_num > 0:
@@ -143,10 +149,11 @@ while True:
 
             #resize ELB
             for id in ids_to_delete:
+                print("deleting instance...")
                 print(id)
                 client = boto3.client('elbv2')
                 client.deregister_targets(
-                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
+                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
                     Targets=[
                         {
                             'Id': id,
@@ -157,7 +164,7 @@ while True:
                 # wait until finish
                 waiter = client.get_waiter('target_deregistered')
                 waiter.wait(
-                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
+                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
                     Targets=[
                         {
                             'Id': id,
@@ -172,4 +179,4 @@ while True:
                 ec2.instances.filter(InstanceIds=[id]).terminate()
 
     # wait for 1 minute
-    time.sleep(60)
+    time.sleep(5)

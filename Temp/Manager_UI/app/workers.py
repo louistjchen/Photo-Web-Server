@@ -19,12 +19,9 @@ def ec2_create():
     # create connection to ec2
     ec2 = boto3.resource('ec2',region_name='us-east-1')
     ts = calendar.timegm(time.gmtime())
-    name = 'user_' + str(ts)
 
-
-    ec2.create_instances(ImageId=config.ami_id, InstanceType='t2.small', MinCount=1, MaxCount=1,
+    instances = ec2.create_instances(ImageId=config.ami_id, InstanceType='t2.small', MinCount=1, MaxCount=1,
                          Monitoring={'Enabled': True},
-                         Placement={'AvailabilityZone': 'us-east-1a', 'GroupName': 'A2_workerpool'},
                          SecurityGroups=[
                              'ece1779',
                          ],
@@ -33,11 +30,52 @@ def ec2_create():
                                 'ResourceType': 'instance',
                                 'Tags': [
                                     {
+                                        'Key': 'Group',
+                                        'Value': 'User Instance'
+                                    },
+                                    {
                                         'Key': 'Name',
-                                        'Value': name
+                                        'Value': str(ts)
                                     },
                                 ]
                             }, ])
+
+    # resize ELB
+    for instance in instances:
+        print(instance.id)
+        ec2 = boto3.resource('ec2')
+        instance.wait_until_running(
+            Filters=[
+                {
+                    'Name': 'instance-id',
+                    'Values': [
+                        instance.id,
+                    ]
+                },
+            ],
+        )
+
+        print(instance.id)
+        client = boto3.client('elbv2')
+        client.register_targets(
+            TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
+            Targets=[
+                {
+                    'Id': instance.id,
+                },
+            ]
+        )
+
+        # wait until finish
+        waiter = client.get_waiter('target_in_service')
+        waiter.wait(
+            TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
+            Targets=[
+                {
+                    'Id': instance.id,
+                },
+            ],
+        )
 
     return redirect(url_for('ec2_list'))
 
@@ -61,7 +99,7 @@ def ec2_list():
     ec2 = boto3.resource('ec2')
 
     instances = ec2.instances.filter(
-      Filters=[{'Name': 'placement-group-name', 'Values': ['A2_workerpool']}])
+      Filters=[{'Name': 'tag:Group', 'Values': ['User Instance']}])
 
     for instance in instances:
 
