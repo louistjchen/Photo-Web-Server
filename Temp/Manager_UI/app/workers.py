@@ -158,6 +158,9 @@ def delete():
     cnx = get_db()
     cursor = cnx.cursor()
 
+    cursor.execute("""TRUNCATE TABLE users""")
+    cnx.commit()
+
     cursor.execute("""TRUNCATE TABLE photos""")
     cnx.commit()
 
