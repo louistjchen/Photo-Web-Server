@@ -153,26 +153,12 @@ def delete():
 
     for k in keys:
         image_name = k.key
-        s3.Object('imagesece1779', image_name).delete()
-        thumb_name = image_name + '_thumbnail'
-        s3.Object('imagesece1779', thumb_name).delete()
-        flopped_name = image_name + '_flopped'
-        s3.Object('imagesece1779', flopped_name).delete()
-        gray_name = image_name + '_gray'
-        s3.Object('imagesece1779', gray_name).delete()
-        rotated_name = '_rotated'
-        s3.Object('imagesece1779', rotated_name).delete()
+        s3.Object('photo-web-server', image_name).delete()
 
     cnx = get_db()
     cursor = cnx.cursor()
 
-    cursor.execute("""TRUNCATE TABLE users""")
-    cnx.commit()
-
-    cnx = get_db()
-    cursor = cnx.cursor()
-
-    cursor.execute("""TRUNCATE TABLE images""")
+    cursor.execute("""TRUNCATE TABLE photos""")
     cnx.commit()
 
     return redirect(url_for('s3_list'))
