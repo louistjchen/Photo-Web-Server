@@ -23,7 +23,7 @@ def ec2_create():
                          SecurityGroups=[
                              'ece1779',
                          ],
-                         KeyName='ece1779_A2_user', TagSpecifications=[
+                         KeyName='ece1779', TagSpecifications=[
                             {
                                 'ResourceType': 'instance',
                                 'Tags': [
