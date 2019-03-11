@@ -5,4 +5,4 @@ db_config = {'user': 'master',
              
 ami_id = 'ami-05ae0443450cc2819'
 
-
+target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'

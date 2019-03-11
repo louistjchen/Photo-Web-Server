@@ -2,9 +2,11 @@ from flask import render_template, redirect, url_for, request, g
 from app import webapp
 
 import boto3
+import calendar
+import time
 
 from app import config
-from app.config import db_config
+from app.config import db_config, target_group
 
 from datetime import datetime, timedelta
 from operator import itemgetter
@@ -16,6 +18,9 @@ import mysql.connector
 def ec2_create():
     # create connection to ec2
     ec2 = boto3.resource('ec2',region_name='us-east-1')
+    ts = calendar.timegm(time.gmtime())
+    name = 'user_' + str(ts)
+
 
     ec2.create_instances(ImageId=config.ami_id, InstanceType='t2.small', MinCount=1, MaxCount=1,
                          Monitoring={'Enabled': True},
@@ -29,7 +34,7 @@ def ec2_create():
                                 'Tags': [
                                     {
                                         'Key': 'Name',
-                                        'Value': 'Additional_workers'
+                                        'Value': name
                                     },
                                 ]
                             }, ])
