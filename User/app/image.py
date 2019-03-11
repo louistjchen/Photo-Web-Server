@@ -13,6 +13,7 @@ def teardown_db(exception):
 @webapp.route('/image/<id>', methods=['GET'])
 def image(id):
 
+    log_http_request('/image/'+id, 'get')
     cnx = get_db()
     cursor = cnx.cursor()
     cursor.execute("SELECT * FROM photos WHERE id = '{}';".format(id))

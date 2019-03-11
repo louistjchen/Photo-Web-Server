@@ -13,11 +13,13 @@ def teardown_db(exception):
 
 @webapp.route('/register', methods=['GET'])
 def register_form():
+    log_http_request('/register', 'get')
     return render_template("register.html", ret_msg="", hidden="hidden")
 
 
 @webapp.route('/register', methods=['POST'])
 def register():
+    log_http_request('/register', 'post')
     username = request.form.get('username', "")
     password = request.form.get('password', "")
     confirm_password = request.form.get('confirm_password', "")

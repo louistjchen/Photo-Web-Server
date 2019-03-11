@@ -17,6 +17,7 @@ def get_image_extension(name):
 
 @webapp.route('/upload', methods=['GET'])
 def upload_():
+    log_http_request('/upload', 'get')
     ret_msg = session['ret_msg'] if 'ret_msg' in session else ""
     session.pop('ret_msg', None)
     hidden = "hidden" if ret_msg == "" else "visible"
@@ -28,6 +29,7 @@ def upload_():
 @webapp.route('/upload', methods=['POST'])
 # Upload a new image and tranform it
 def upload():
+    log_http_request('/upload', 'post')
     ret_msg = None
     session.pop('ret_msg', None)
 

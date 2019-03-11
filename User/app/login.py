@@ -6,6 +6,8 @@ from app.db import *
 
 @webapp.route('/login', methods=['POST'])
 def login():
+
+    log_http_request('/login', 'post')
     username = request.form.get('username', "")
     password = request.form.get('password', "")
     session.pop('ret_msg', None)

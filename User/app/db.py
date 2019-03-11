@@ -1,5 +1,8 @@
 import random
 import boto3
+import time
+import calendar
+import urllib.request
 
 import mysql.connector
 from flask import g
@@ -70,13 +73,17 @@ def download_file_from_s3(filename):
                               ExpiresIn=3600)
     return url
 
-def log_http_request():
+def log_http_request(url, method):
 
-    # cnx = get_db()
-    # cursor = cnx.cursor()
-    # cursor.execute(''' INSERT INTO photos (username,imagepath1,imagepath2)
-    #                            VALUES (%s,%s,%s)
-    #         ''', (username, filename1, filename2))
-    # cnx.commit()
-    return
+    # instanceid = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
+    instanceid = 'louis_macbook'
+    timestamp = calendar.timegm(time.gmtime())
+
+    cnx = get_db()
+    cursor = cnx.cursor()
+    cursor.execute(''' INSERT INTO requests (instanceid,timestamp,url,method)
+                               VALUES (%s,%s,%s,%s)
+            ''', (instanceid, timestamp, url, method))
+    cnx.commit()
+
 

@@ -2,6 +2,7 @@ from flask import render_template, session
 
 from app import webapp
 from app.profile import retrieve_images
+from app.db import log_http_request
 
 
 @webapp.route('/', methods=['GET'])
@@ -9,6 +10,7 @@ from app.profile import retrieve_images
 @webapp.route('/main', methods=['GET'])
 # Display an HTML page with links
 def main():
+    log_http_request('/main', 'get')
     ret_msg = session['ret_msg'] if 'ret_msg' in session else ""
     session.pop('ret_msg', None)
     hidden = "hidden" if ret_msg == "" else "visible"
