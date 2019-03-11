@@ -142,38 +142,38 @@ def teardown_db(exception):
         db.close()
 
 
-# @webapp.route('/s3/delete', methods=['POST'])
-# # delete all files in s3 bucket and the data in RDS
-# def delete():
-# 
-#     s3 = boto3.resource('s3')
-#     bucket = s3.Bucket('photo-web-server')
-# 
-#     keys = bucket.objects.all()
-# 
-#     for k in keys:
-#         image_name = k.key
-#         s3.Object('imagesece1779', image_name).delete()
-#         thumb_name = image_name + '_thumbnail'
-#         s3.Object('imagesece1779', thumb_name).delete()
-#         flopped_name = image_name + '_flopped'
-#         s3.Object('imagesece1779', flopped_name).delete()
-#         gray_name = image_name + '_gray'
-#         s3.Object('imagesece1779', gray_name).delete()
-#         rotated_name = '_rotated'
-#         s3.Object('imagesece1779', rotated_name).delete()
-# 
-#     cnx = get_db()
-#     cursor = cnx.cursor()
-# 
-#     cursor.execute("""TRUNCATE TABLE users""")
-#     cnx.commit()
-# 
-#     cnx = get_db()
-#     cursor = cnx.cursor()
-# 
-#     cursor.execute("""TRUNCATE TABLE images""")
-#     cnx.commit()
-# 
-#     return redirect(url_for('s3_list'))
+@webapp.route('/s3/delete', methods=['POST'])
+# delete all files in s3 bucket and the data in RDS
+def delete():
+
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('photo-web-server')
+
+    keys = bucket.objects.all()
+
+    for k in keys:
+        image_name = k.key
+        s3.Object('imagesece1779', image_name).delete()
+        thumb_name = image_name + '_thumbnail'
+        s3.Object('imagesece1779', thumb_name).delete()
+        flopped_name = image_name + '_flopped'
+        s3.Object('imagesece1779', flopped_name).delete()
+        gray_name = image_name + '_gray'
+        s3.Object('imagesece1779', gray_name).delete()
+        rotated_name = '_rotated'
+        s3.Object('imagesece1779', rotated_name).delete()
+
+    cnx = get_db()
+    cursor = cnx.cursor()
+
+    cursor.execute("""TRUNCATE TABLE users""")
+    cnx.commit()
+
+    cnx = get_db()
+    cursor = cnx.cursor()
+
+    cursor.execute("""TRUNCATE TABLE images""")
+    cnx.commit()
+
+    return redirect(url_for('s3_list'))
 
