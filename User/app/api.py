@@ -100,8 +100,7 @@ def api_upload():
     if filename == '':
         return jsonify({'HTTP Status Code' : 400, "Message" : "Error: Missing file name"})
 
-    # create a directory for use if not exist
-    directory = 'app/static/users/' + username + "/"
+    directory = 'app/static/temp/'
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -117,31 +116,76 @@ def api_upload():
 
     cwd = os.getcwd()
     face_cascade = cv.CascadeClassifier(cwd + '/app/train_file/face.xml')
-    #    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
     img = cv.imread(fname1)
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
-    faces = None
-    try:
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    except:
-        return jsonify({'HTTP Status Code' : 400, "Message" : "Error: File not found"})
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     for (x, y, w, h) in faces:
         cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-        roi_gray = gray[y:y + h, x:x + w]
-        roi_color = img[y:y + h, x:x + w]
-    #        eyes = eye_cascade.detectMultiScale(roi_gray)
-    #        for (ex, ey, ew, eh) in eyes:
-    #            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
 
     cv.imwrite(fname2, img)
+
+    filename1 = username + '/' + filename1
+    filename2 = username + '/' + filename2
 
     # write filename1 and filename2 associated with username into database
     cnx = get_db()
     cursor = cnx.cursor()
     cursor.execute(''' INSERT INTO photos (username,imagepath1,imagepath2)
                                VALUES (%s,%s,%s)
-            ''', (username, fname1, fname2))
+            ''', (username, filename1, filename2))
     cnx.commit()
+
+    # upload 2 files onto s3
+    upload_file_to_s3(fname1, filename1)
+    upload_file_to_s3(fname2, filename2)
+
+    # deleting local cached files
+    os.remove(fname1)
+    os.remove(fname2)
+
+    # # create a directory for use if not exist
+    # directory = 'app/static/users/' + username + "/"
+    # if not os.path.exists(directory):
+    #     os.makedirs(directory)
+    #
+    # # set filename as timestamp
+    # ts = time.time()
+    # filename1 = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d_%H%M%S')
+    # filename2 = filename1 + "_face"
+    # filename1 = filename1 + extension
+    # filename2 = filename2 + extension
+    # fname1 = os.path.join(directory, filename1)
+    # fname2 = os.path.join(directory, filename2)
+    # new_file.save(fname1)
+    #
+    # cwd = os.getcwd()
+    # face_cascade = cv.CascadeClassifier(cwd + '/app/train_file/face.xml')
+    # #    eye_cascade = cv.CascadeClassifier(cwd + '/app/train_file/eye.xml')
+    # img = cv.imread(fname1)
+    # gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    #
+    # faces = None
+    # try:
+    #     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+    # except:
+    #     return jsonify({'HTTP Status Code' : 400, "Message" : "Error: File not found"})
+    # for (x, y, w, h) in faces:
+    #     cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    #     roi_gray = gray[y:y + h, x:x + w]
+    #     roi_color = img[y:y + h, x:x + w]
+    # #        eyes = eye_cascade.detectMultiScale(roi_gray)
+    # #        for (ex, ey, ew, eh) in eyes:
+    # #            cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+    #
+    # cv.imwrite(fname2, img)
+    #
+    # # write filename1 and filename2 associated with username into database
+    # cnx = get_db()
+    # cursor = cnx.cursor()
+    # cursor.execute(''' INSERT INTO photos (username,imagepath1,imagepath2)
+    #                            VALUES (%s,%s,%s)
+    #         ''', (username, fname1, fname2))
+    # cnx.commit()
 
     return jsonify({'HTTP Status Code' : 200, "Message" : "Success: Photo is uploaded successfully"})

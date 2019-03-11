@@ -69,3 +69,14 @@ def download_file_from_s3(filename):
                               },
                               ExpiresIn=3600)
     return url
+
+def log_http_request():
+
+    # cnx = get_db()
+    # cursor = cnx.cursor()
+    # cursor.execute(''' INSERT INTO photos (username,imagepath1,imagepath2)
+    #                            VALUES (%s,%s,%s)
+    #         ''', (username, filename1, filename2))
+    # cnx.commit()
+    return
+
