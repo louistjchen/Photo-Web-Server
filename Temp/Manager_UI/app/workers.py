@@ -21,7 +21,7 @@ def ec2_create():
                          Monitoring={'Enabled': True},
                          Placement={'AvailabilityZone': 'us-east-1a', 'GroupName': 'A2_workerpool'},
                          SecurityGroups=[
-                             'launch-wizard-11',
+                             'ece1779',
                          ],
                          KeyName='ece1779_A2_user', TagSpecifications=[
                             {
