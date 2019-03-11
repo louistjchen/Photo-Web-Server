@@ -111,7 +111,7 @@ while True:
             print(instance.id)
             client = boto3.client('elbv2')
             client.register_targets(
-                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2/cc45d53d3f4e4fb1',
+                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
                 Targets=[
                     {
                         'Id': instance.id,
@@ -123,7 +123,7 @@ while True:
             # wait until finish
             waiter = client.get_waiter('target_in_service')
             waiter.wait(
-                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2/cc45d53d3f4e4fb1',
+                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
                 Targets=[
                     {
                         'Id': instance.id,
@@ -146,7 +146,7 @@ while True:
                 print(id)
                 client = boto3.client('elbv2')
                 client.deregister_targets(
-                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2/cc45d53d3f4e4fb1',
+                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
                     Targets=[
                         {
                             'Id': id,
@@ -157,7 +157,7 @@ while True:
                 # wait until finish
                 waiter = client.get_waiter('target_deregistered')
                 waiter.wait(
-                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2/cc45d53d3f4e4fb1',
+                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/ece1779a2targetgrouptcp/6264c7f31769b472',
                     Targets=[
                         {
                             'Id': id,
