@@ -35,7 +35,7 @@ def delete_outdated(delete):
     cnx = get_db()
     cursor = cnx.cursor()
     for id in delete:
-        print("deleting "+str(id))
+        print("deleting HTTP request rate id: "+str(id))
         cursor.execute(query, (id,))
     cnx.commit()
 

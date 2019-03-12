@@ -89,6 +89,17 @@ def ec2_destroy(id):
 
     ec2.instances.filter(InstanceIds=[id]).terminate()
 
+    # delete http request rate
+    cnx = get_db()
+    cursor = cnx.cursor()
+
+    cursor.execute("SELECT * FROM requests WHERE instanceid = '{}';".format(id))
+    delete = []
+    for row in cursor:
+        delete.append(row[0])
+
+    delete_outdated(delete)
+
     return redirect(url_for('ec2_list'))
 
 
