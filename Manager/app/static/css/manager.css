@@ -1,0 +1,17 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: -ms-flexbox;
+    -ms-flex-align: center;
+    align-items: center;
+
+    background-position: center;
+    background-size: cover;
+
+    background-color: rgba(150, 150, 150, 0.2);
+
+}
+

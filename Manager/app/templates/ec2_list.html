@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+<link rel="stylesheet" href="../static/css/manager.css">
+
+<html>
+<head>
+    <title>ECE1779 Assignment 2</title>
+</head>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">PhotoWebServer</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/main">Worker Pool</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/s3_list">S3 List</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container" style="text-align: left;background-color: white;padding: 50px;margin-top: 50px;">
+
+
+    <form action="{{url_for('ec2_create')}}" method="post">
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="New Instance">
+    </form>
+
+
+    <div style=" margin-top: 20px;">
+
+        <table class="table">
+
+            <thead>
+
+            <th>Instance Id</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Availability Zone</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th>Delete</th>
+
+
+            </thead>
+
+            {% for instance in instances %}
+            <tr>
+                <td>{{ instance.id }}</td>
+                {% for tag in instance.tags %}
+                    {% if tag['Key'] == 'Name' %}
+
+                    <td>{{ tag['Value'] }}</td>
+
+                    {% endif %}
+                {% endfor %}
+
+                <td>{{ instance.instance_type }}</td>
+                <td>{{ instance.placement['AvailabilityZone']}}</td>
+                <td>{{ instance.state['Name'] }}</td>
+
+                <td>
+                    <form action="{{url_for('ec2_details',id=instance.id)}}" method='get'>
+                        <input type='submit' value='Details' class="btn btn-sm btn-primary btn-block"/>
+                    </form>
+                </td>
+
+                <td>
+                    <form action="{{url_for('ec2_delete',id=instance.id)}}" method='post'
+                          onsubmit='return confirm("Are you sure?")'>
+                        <input type='submit' value='Delete' class="btn btn-sm btn-primary btn-block"/>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+
+

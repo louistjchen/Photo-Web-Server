@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+<link rel="stylesheet" href="../static/css/manager.css">
+
+<html>
+<head>
+    <title>ECE1779 Assignment 2</title>
+</head>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">PhotoWebServer</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/main">Worker Pool</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/s3_list">S3 List</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<div class="container" style="text-align: left;background-color: white;padding: 50px;margin-top: 50px;">
+
+    <form action="{{url_for('s3_delete')}}" method='post' onsubmit='return confirm("Are you sure to delete all data?")'>
+        <input type="submit" value="Delete All Data" class="btn btn-lg btn-primary btn-block">
+    </form>
+
+    <div style=" margin-top: 20px;">
+
+        <table class="table">
+            <thead>
+            <th>Photo</th>
+
+            <th>Last Modified</th>
+            </thead>
+            {% for object in objects %}
+            <tr>
+                <td>{{ object.key }}</td>
+
+                <td>{{ object.last_modified }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
