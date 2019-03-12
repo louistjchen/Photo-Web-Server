@@ -112,7 +112,7 @@ def ec2_list():
     return render_template("ec2_list.html", instances=instances)
 
 
-@webapp.route('/worker/<id>', methods=['GET'])
+@webapp.route('/workers/<id>', methods=['GET'])
 def ec2_details(id):
     ec2 = boto3.resource('ec2')
 
@@ -152,7 +152,7 @@ def ec2_details(id):
     labels = []
     values = []
     for request in requests:
-        labels.append(-request[0])
+        labels.append(request[0])
         values.append(request[1])
 
     labels.reverse()

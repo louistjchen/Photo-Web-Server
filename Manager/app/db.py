@@ -58,7 +58,7 @@ def retrieve_http_request_rate(id):
     t = time.gmtime()
     current = calendar.timegm(t) - t.tm_sec + 60
     timeframe = 30
-    ret = [[0-i, 0] for i in range(timeframe)]
+    ret = [[i, 0] for i in range(timeframe)]
     for ts in timestamps:
         timestamp = int(ts[2])
         diff = current - timestamp
