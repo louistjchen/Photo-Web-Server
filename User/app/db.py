@@ -75,8 +75,11 @@ def download_file_from_s3(filename):
 
 def log_http_request(url, method):
 
-    # instanceid = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
-    instanceid = 'louis_macbook'
+    instanceid = None
+    try:
+        instanceid = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
+    except:
+        instanceid = 'localMachine'
     timestamp = calendar.timegm(time.gmtime())
 
     cnx = get_db()

@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, request, g
 from app import webapp
+from app.db import *
 
 import boto3
 import calendar
@@ -138,29 +139,32 @@ def ec2_view(id):
 
     )
 
-    print(cpu)
+    # print(cpu)
 
     # gather return statistics
     cpu_stats = []
 
     for point in cpu['Datapoints']:
         hour = point['Timestamp'].hour
-        print(hour)
+        # print(hour)
         minute = point['Timestamp'].minute
-        print(minute)
+        # print(minute)
         time = hour + minute/60
-        print(time)
-        print(point)
+        # print(time)
+        # print(point)
         cpu_stats.append([time, point['Average']])
 
-    print(cpu_stats)
+    # print(cpu_stats)
 
     cpu_stats = sorted(cpu_stats, key=itemgetter(0))
     print(cpu_stats)
 
+    requests = retrieve_http_request_rate(id)
+
     return render_template("workers/view.html", title="Instance Info",
                            instance=instance,
-                           cpu_stats=cpu_stats)
+                           cpu_stats=cpu_stats,
+                           http_req=requests)
 
 
 # connect the database
