@@ -5,6 +5,7 @@ import calendar
 from flask import g
 from app import webapp
 from app.config import db_config
+from threading import Thread
 
 
 def connect_to_database():
@@ -67,6 +68,7 @@ def retrieve_http_request_rate(id):
         else:
             delete.append(ts[0])
 
-    delete_outdated(delete)
+    thr = Thread(target=delete_outdated, args=[delete])
+    thr.start()
 
     return ret
