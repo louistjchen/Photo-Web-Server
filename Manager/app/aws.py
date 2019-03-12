@@ -9,7 +9,6 @@ from threading import Thread
 
 from app import config
 from app import webapp
-from app.config import db_config, target_group
 from app.db import *
 
 
@@ -51,25 +50,28 @@ def ec2_create():
     ec2 = boto3.resource('ec2')
     ts = calendar.timegm(time.gmtime())
 
-    instances = ec2.create_instances(ImageId=config.ami_id, InstanceType='t2.small', MinCount=1, MaxCount=1,
+    instances = ec2.create_instances(ImageId=config.ami_id,
+                                     InstanceType='t2.small',
+                                     MinCount=1,
+                                     MaxCount=1,
                                      Monitoring={'Enabled': True},
                                      SecurityGroups=[
                                          'ece1779',
                                      ],
-                                     KeyName='ece1779', TagSpecifications=[
-            {
-                'ResourceType': 'instance',
-                'Tags': [
-                    {
-                        'Key': 'Group',
-                        'Value': 'User Instance'
-                    },
-                    {
-                        'Key': 'Name',
-                        'Value': str(ts)
-                    },
-                ]
-            }, ])
+                                     KeyName='ece1779',
+                                     TagSpecifications=[{
+                                         'ResourceType': 'instance',
+                                         'Tags': [
+                                             {
+                                                 'Key': 'Group',
+                                                 'Value': 'User Instance'
+                                             },
+                                             {
+                                                 'Key': 'Name',
+                                                 'Value': str(ts)
+                                             },
+                                         ]
+                                     }, ])
     thr = Thread(target=register_lb, args=[instances])
     thr.start()
 
