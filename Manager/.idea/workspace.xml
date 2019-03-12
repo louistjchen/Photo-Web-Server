@@ -2,123 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a8bb993-2ec1-4dfb-bde0-a55ab05bfd00" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/aws.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/aws.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/Manager_UI.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/s3_images.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/API.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/CONTRIBUTING.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/FAQ.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/NEWS.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/PLUGINS.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/component.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-eu-gdp-growth-1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-eu-gdp-growth-2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-eu-gdp-growth-3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-eu-gdp-growth-4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-eu-gdp-growth-5.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-eu-gdp-growth.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-japan-gdp-growth.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/data-usa-gdp-growth.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/ajax/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/annotating/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-interacting/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-multiple/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/date.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/africa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/antarctica" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/asia" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/australasia" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/backward" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/etcetera" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/europe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/factory" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/iso3166.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/leapseconds" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/northamerica" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/pacificnew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/solar87" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/solar88" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/solar89" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/southamerica" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/systemv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/yearistype.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time-zones/tz/zone.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/axes-time/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/basic-options/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/basic-usage/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/canvas/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/categories/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/examples.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/image/hs-2004-27-a-large-web.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/image/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/interacting/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/navigate/arrow-down.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/navigate/arrow-left.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/navigate/arrow-right.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/navigate/arrow-up.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/navigate/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/percentiles/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/realtime/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/resize/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/selection/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/series-errorbars/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/series-pie/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/series-toggle/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/series-types/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/shared/jquery-ui/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/stacking/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/symbols/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/threshold/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/tracking/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/visitors/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/examples/zooming/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/excanvas.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/excanvas.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/flot.jquery.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.colorhelpers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.canvas.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.categories.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.crosshair.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.errorbars.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.fillbetween.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.image.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.navigate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.pie.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.resize.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.selection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.stack.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.symbol.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.threshold.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.flot.time.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/static/flot/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/templates/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/templates/s3_examples/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/templates/workers/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/templates/workers/view.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/app/workers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/cpu_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/run.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Temp/Manager_UI/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,14 +17,14 @@
     <SUITE FILE_PATH="coverage/Manager$run.coverage" NAME="run Coverage Results" MODIFIED="1552384036177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.4895458">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/config.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="135">
-                  <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+                  <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -145,8 +32,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/db.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+                <state relative-caret-position="1095">
+                  <caret line="73" column="14" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#22#0" expanded="true" />
                   </folding>
@@ -169,8 +56,6 @@
                 <state relative-caret-position="1740">
                   <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
                   <folding>
-                    <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
@@ -205,8 +90,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/aws.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="410">
-                  <caret line="134" column="14" selection-start-line="134" selection-start-column="14" selection-end-line="134" selection-end-column="14" />
+                <state relative-caret-position="2175">
+                  <caret line="145" column="19" lean-forward="true" selection-start-line="145" selection-start-column="19" selection-end-line="145" selection-end-column="19" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                   </folding>
@@ -217,12 +102,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/aws.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="333">
-                  <caret line="131" column="34" selection-start-line="131" selection-start-column="34" selection-end-line="131" selection-end-column="34" />
+                <state relative-caret-position="15">
+                  <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                   </folding>
@@ -287,6 +172,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,41 +180,17 @@
               <item name="Manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="Manager" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Manager" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Manager" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Manager" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Manager" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -349,8 +211,76 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.run">
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="cpu_check" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Manager_UI" />
+      <module name="Manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -372,7 +302,7 @@
       <method v="2" />
     </configuration>
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Manager_UI" />
+      <module name="Manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -391,6 +321,128 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="host" value="127.0.0.1" />
+      <option name="browserUrl" value="" />
+      <option name="additionalOptions" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer" factoryName="Flask server">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="Manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
@@ -415,18 +467,18 @@
       <option name="presentableId" value="Default" />
       <updated>1542149715666</updated>
       <workItem from="1552368296463" duration="14406000" />
+      <workItem from="1552384606466" duration="250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14406000" />
+    <option name="totallyTimeSpent" value="14711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="1028" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15323566" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15506716" />
       <window_info id="Project Explorer" order="2" weight="0.32980973" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="DB Browser" order="4" weight="0.32980973" />
@@ -435,7 +487,7 @@
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32905984" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.3611111" />
+      <window_info anchor="bottom" id="Run" order="4" weight="0.3611111" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.39957264" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -461,13 +513,7 @@
     <entry file="file://$PROJECT_DIR$/app/images.py" />
     <entry file="file://$PROJECT_DIR$/app/templates/script.html" />
     <entry file="file://$PROJECT_DIR$/app/cpu_check.py" />
-    <entry file="file://$PROJECT_DIR$/app/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/main.html" />
     <entry file="file://$PROJECT_DIR$/app/static/css/manager.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -491,13 +537,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -516,22 +556,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/ec2_details.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/chart.html" />
+    <entry file="file://$PROJECT_DIR$/app/s3.py" />
+    <entry file="file://$PROJECT_DIR$/app/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+        <state relative-caret-position="135">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="73" column="14" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/chart.html">
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="35" column="56" lean-forward="true" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="56" />
+        <state relative-caret-position="90">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/ec2_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -549,23 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/s3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -576,27 +613,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
+    <entry file="uml://JavaScript-modules-diagram//Users/Hao/Documents/Development/Photo-Web-Server/Manager">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/app/templates/ec2_details.html</node>
+            <node x="" y="">$PROJECT_DIR$/app/templates/ec2_list.html</node>
+            <node x="" y="">$PROJECT_DIR$/app/static/css/manager.css</node>
+            <node x="" y="">$PROJECT_DIR$/app/templates/s3_list.html</node>
+            <node x="" y="">https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js</node>
+            <node x="" y="">https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css</node>
+            <node x="" y="">https://www.chartjs.org/dist/2.7.1/Chart.bundle.js</node>
+            <node x="" y="">https://www.chartjs.org/samples/latest/utils.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="210.5" y="229.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/aws.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="134" column="14" selection-start-line="134" selection-start-column="14" selection-end-line="134" selection-end-column="14" />
+        <state relative-caret-position="15">
+          <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
