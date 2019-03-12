@@ -29,6 +29,17 @@ def teardown_db(exception):
         db.close()
 
 
+def delete_outdated(delete):
+    query = "DELETE FROM requests WHERE id = %s"
+
+    cnx = get_db()
+    cursor = cnx.cursor()
+    for id in delete:
+        print("deleting "+str(id))
+        cursor.execute(query, (id,))
+    cnx.commit()
+
+
 def retrieve_http_request_rate(id):
 
     cnx = get_db()
@@ -36,19 +47,25 @@ def retrieve_http_request_rate(id):
 
     cursor.execute("SELECT * FROM requests WHERE instanceid = '{}';".format(id))
     timestamps = []
+    delete = []
     for row in cursor:
-        timestamps.append(int(row[2]))
+        timestamps.append(row)
         timestamps.reverse()
 
-    current = calendar.timegm(time.gmtime())
+
+    t = time.gmtime()
+    current = calendar.timegm(t) - t.tm_sec + 60
     timeframe = 30
-    ret = [[i-timeframe+1, 0] for i in range(30)]
-    for timestamp in timestamps:
+    ret = [[0-i, 0] for i in range(timeframe)]
+    for ts in timestamps:
+        timestamp = int(ts[2])
         diff = current - timestamp
         minute = int(diff/60)
-        if minute < 30:
-            ret[minute-timeframe+1][1] = ret[minute-timeframe+1][1] + 1
+        if minute < timeframe:
+            ret[minute][1] = ret[minute][1] + 1
         else:
-            break
+            delete.append(ts[0])
+
+    delete_outdated(delete)
 
     return ret

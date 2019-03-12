@@ -157,7 +157,7 @@ def ec2_view(id):
     # print(cpu_stats)
 
     cpu_stats = sorted(cpu_stats, key=itemgetter(0))
-    print(cpu_stats)
+    # print(cpu_stats)
 
     requests = retrieve_http_request_rate(id)
 
