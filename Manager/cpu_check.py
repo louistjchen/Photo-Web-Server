@@ -1,5 +1,6 @@
 import boto3
 import time
+import mysql.connector
 
 from datetime import datetime, timedelta
 import calendar
@@ -7,13 +8,45 @@ import calendar
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
 ami_id = 'ami-09af13d8385ef9965'
-max_threshold = 70
-min_threshold = 20
 
-increase_ratio = 2
-decrease_ratio = 2
+db_config = {'user': 'master',
+             'password': 'ece1779pass',
+             'host': 'ece1779.c3z9wvey8adq.us-east-2.rds.amazonaws.com',
+             'database': 'a2'}
 
-while True:
+
+def connect_to_database():
+    return mysql.connector.connect(user=db_config['user'],
+                                   password=db_config['password'],
+                                   host=db_config['host'],
+                                   database=db_config['database'])
+
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = connect_to_database()
+    return db
+
+
+cnx = get_db()
+cursor = cnx.cursor()
+
+cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
+
+for row in cursor:
+    max_threshold = row[1]
+    min_threshold = row[2]
+    increase_ratio = row[3]
+    decrease_ratio = row[4]
+
+print("Max threshold:"+ str(max_threshold))
+print("Min threshold:"+ str(min_threshold))
+print("Increase ratio:"+ str(max_threshold))
+print("Decrease ratio:"+ str(max_threshold))
+
+
+while 0:
 
     ec2 = boto3.resource('ec2')
 
