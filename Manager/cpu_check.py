@@ -15,7 +15,6 @@ decrease_ratio = 2
 
 while True:
 
-    # create connection to ec2
     ec2 = boto3.resource('ec2')
 
     instances = ec2.instances.filter(
@@ -89,7 +88,7 @@ while True:
                 print("Adding instances...")
                 instances = ec2.create_instances(ImageId=ami_id,
                                                  InstanceType='t2.small',
-                                                 MinCount = num_of_ins_to_add,
+                                                 MinCount = 1,
                                                  MaxCount = num_of_ins_to_add,
                                                  Monitoring={'Enabled': True},
                                                  SecurityGroups=[
