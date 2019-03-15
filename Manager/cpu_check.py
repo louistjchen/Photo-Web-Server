@@ -87,7 +87,6 @@ while True:
                                                  MinCount=1,
                                                  MaxCount=1,
                                                  Monitoring={'Enabled': True},
-                                                 Placement={'AvailabilityZone': 'us-east-1'},
                                                  SecurityGroups=[
                                                      'ece1779',
                                                  ],
