@@ -73,6 +73,7 @@ while True:
             print("Num of instances: "+str(num_ins))
             print("Num of instances after expand: "+str(num_ins_after_add))
             print("Increase Ratio: "+str(increase_ratio))
+            print("Max Threshold: "+str(max_threshold))
             print("Num of instances to add: "+str(num_of_ins_to_add))
             print("------------------------------------------")
 
@@ -152,6 +153,7 @@ while True:
             print("Num of instances: "+str(num_ins))
             print("Num of instances after shrink: "+str(num_ins_after_shrink))
             print("Decrease Ratio: "+str(decrease_ratio))
+            print("Min Threshold: "+str(min_threshold))
             print("Num of instances to remove: "+str(num_of_ins_to_remove))
             print("------------------------------------------")
 
