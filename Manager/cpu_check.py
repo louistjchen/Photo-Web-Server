@@ -3,8 +3,6 @@ import time
 from datetime import datetime, timedelta
 import calendar
 import sys
-import logging
-import rds_config
 import pymysql
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
@@ -19,7 +17,7 @@ db_config = {'user': 'master',
 try:
     conn = pymysql.connect(db_config['host'], user=db_config['user'], passwd=db_config['password'], db=db_config['database'])
 except:
-    logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
+    print("ERROR: Unexpected error: Could not connect to MySQL instance.")
     sys.exit()
 
 cursor = conn.cursor()
