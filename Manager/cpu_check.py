@@ -59,7 +59,7 @@ while True:
     print("IDs: "+str(ids))
     print("------------------------------------------")
 
-    num_ins = len(instances)
+    num_ins = len(ids)
 
     if average_cpu_utilization > max_threshold:
 
