@@ -3,7 +3,8 @@ import time
 
 from datetime import datetime, timedelta
 
-from app import config
+target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
+
 
 max_threshold = 70
 min_threshold = 20
@@ -14,7 +15,7 @@ decrease_rate = 0.75
 while True:
 
     # create connection to ec2
-    ec2 = boto3.resource('ec2',region_name='us-east-1')
+    ec2 = boto3.resource('ec2')
 
     instances = ec2.instances.filter(
       Filters=[
@@ -36,20 +37,17 @@ while True:
 
         client = boto3.client('cloudwatch')
 
-        # get cpu statistics in 1 minute(60s)
-
         cpu_1 = client.get_metric_statistics(
             Period=60,
-            StartTime=datetime.utcnow() - timedelta(seconds=2 * 60),
-            EndTime=datetime.utcnow() - timedelta(seconds=1 * 60),
+            StartTime=datetime.utcnow() - timedelta(seconds=1 * 60),
+            EndTime=datetime.utcnow() - timedelta(seconds=0 * 60),
             MetricName='CPUUtilization',
-            Namespace='AWS/EC2',  # Unit='Percent',
+            Namespace='AWS/EC2',
+            Unit='Percent',
             Statistics=['Average'],
             Dimensions=[{'Name': 'InstanceId',
                          'Value': instance.id}]
         )
-
-        # gather return statistics
 
         for point in cpu_1['Datapoints']:
 
@@ -116,7 +114,7 @@ while True:
             print(instance.id)
             client = boto3.client('elbv2')
             client.register_targets(
-                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
+                TargetGroupArn=target_group,
                 Targets=[
                     {
                         'Id': instance.id,
@@ -128,7 +126,7 @@ while True:
             # wait until finish
             waiter = client.get_waiter('target_in_service')
             waiter.wait(
-                TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
+                TargetGroupArn=target_group,
                 Targets=[
                     {
                         'Id': instance.id,
@@ -153,7 +151,7 @@ while True:
                 print(id)
                 client = boto3.client('elbv2')
                 client.deregister_targets(
-                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
+                    TargetGroupArn=target_group,
                     Targets=[
                         {
                             'Id': id,
@@ -164,7 +162,7 @@ while True:
                 # wait until finish
                 waiter = client.get_waiter('target_deregistered')
                 waiter.wait(
-                    TargetGroupArn='arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575',
+                    TargetGroupArn=target_group,
                     Targets=[
                         {
                             'Id': id,

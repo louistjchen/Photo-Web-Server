@@ -121,9 +121,9 @@ def ec2_details(id):
     cloudwatch = boto3.client('cloudwatch')
 
     cpu = cloudwatch.get_metric_statistics(
-        Period=30,
-        StartTime=datetime.utcnow() - timedelta(seconds=61 * 30),
-        EndTime=datetime.utcnow() - timedelta(seconds=1 * 30),
+        Period=60,
+        StartTime=datetime.utcnow() - timedelta(seconds=60 * 60),
+        EndTime=datetime.utcnow() - timedelta(seconds=0 * 60),
         MetricName='CPUUtilization',
         Namespace='AWS/EC2',
         Unit='Percent',
