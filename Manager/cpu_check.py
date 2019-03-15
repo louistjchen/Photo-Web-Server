@@ -164,7 +164,10 @@ while True:
 
                 for id in ids_to_remove:
                     print("Removing instance...")
-                    print(id)
                     ec2.instances.filter(InstanceIds=[id]).terminate()
+                    print("Removed instance: "+ str(id))
+    else:
+        print("No CPU results")
+        print("------------------------------------------")
 
     time.sleep(5)
