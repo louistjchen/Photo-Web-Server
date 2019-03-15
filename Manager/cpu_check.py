@@ -141,7 +141,7 @@ while True:
 
     if average_cpu_utilization < min_threshold:
 
-        num_ins_after_shrink = num_ins / decrease_ratio
+        num_ins_after_shrink = int(num_ins / decrease_ratio)
 
         num_of_ins_to_remove = num_ins - num_ins_after_shrink
 
