@@ -54,8 +54,7 @@ while True:
             load = point['Average']
             cpu_utilization.append(load)
 
-    # if len(cpu_utilization) != 0:
-    if len(ids) <3:
+    if len(cpu_utilization) != 0:
 
         average_cpu_utilization = sum(cpu_utilization) / len(cpu_utilization)
 
@@ -70,6 +69,11 @@ while True:
 
             num_ins_after_add = int(num_ins * increase_ratio)
 
+            if num_ins_after_add > 19:
+                print("Reach the max number of instances")
+                print("------------------------------------------")
+                num_ins_after_add = 19
+
             num_of_ins_to_add = num_ins_after_add - num_ins
 
             print("Condition: average_cpu_utilization > max_threshold")
@@ -81,68 +85,69 @@ while True:
             print("------------------------------------------")
 
             ts = calendar.timegm(time.gmtime())
-            print("Adding instances...")
+            if num_of_ins_to_add > 0:
+                print("Adding instances...")
+                instances = ec2.create_instances(ImageId=ami_id,
+                                                 InstanceType='t2.small',
+                                                 MinCount = num_of_ins_to_add,
+                                                 MaxCount = num_of_ins_to_add,
+                                                 Monitoring={'Enabled': True},
+                                                 SecurityGroups=[
+                                                     'ece1779',
+                                                 ],
+                                                 KeyName='ece1779',
+                                                 TagSpecifications=[
+                                                     {
+                                                         'ResourceType': 'instance',
+                                                         'Tags': [
+                                                             {
+                                                                 'Key': 'Group',
+                                                                 'Value': 'User Instance'
+                                                             },
+                                                             {
+                                                                 'Key': 'Name',
+                                                                 'Value': str(ts)
+                                                             },
+                                                         ]
+                                                     },
+                                                 ]
+                                                 )
 
-            instances = ec2.create_instances(ImageId=ami_id,
-                                             InstanceType='t2.small',
-                                             MinCount = num_of_ins_to_add,
-                                             MaxCount = num_of_ins_to_add,
-                                             Monitoring={'Enabled': True},
-                                             SecurityGroups=[
-                                                 'ece1779',
-                                             ],
-                                             KeyName='ece1779',
-                                             TagSpecifications=[
-                                                 {
-                                                     'ResourceType': 'instance',
-                                                     'Tags': [
-                                                         {
-                                                             'Key': 'Group',
-                                                             'Value': 'User Instance'
-                                                         },
-                                                         {
-                                                             'Key': 'Name',
-                                                             'Value': str(ts)
-                                                         },
-                                                     ]
-                                                 },
-                                             ]
-                                             )
+                for instance in instances:
+                    ec2 = boto3.resource('ec2')
+                    instance.wait_until_running(
+                        Filters=[
+                            {
+                                'Name': 'instance-id',
+                                'Values': [
+                                    instance.id,
+                                ]
+                            },
+                        ],
+                    )
 
-            for instance in instances:
-                ec2 = boto3.resource('ec2')
-                instance.wait_until_running(
-                    Filters=[
-                        {
-                            'Name': 'instance-id',
-                            'Values': [
-                                instance.id,
-                            ]
-                        },
-                    ],
-                )
+                    print("Registering instance with id:"+str(instance.id))
+                    client = boto3.client('elbv2')
+                    client.register_targets(
+                        TargetGroupArn=target_group,
+                        Targets=[
+                            {
+                                'Id': instance.id,
+                            },
+                        ]
+                    )
 
-                print(instance.id)
-                client = boto3.client('elbv2')
-                client.register_targets(
-                    TargetGroupArn=target_group,
-                    Targets=[
-                        {
-                            'Id': instance.id,
-                        },
-                    ]
-                )
-
-                print(instance.id)
-                waiter = client.get_waiter('target_in_service')
-                waiter.wait(
-                    TargetGroupArn=target_group,
-                    Targets=[
-                        {
-                            'Id': instance.id,
-                        },
-                    ],
-                )
+                    print("Waiting for instance with id:"+str(instance.id))
+                    print("------------------------------------------")
+                    waiter = client.get_waiter('target_in_service')
+                    waiter.wait(
+                        TargetGroupArn=target_group,
+                        Targets=[
+                            {
+                                'Id': instance.id,
+                            },
+                        ],
+                    )
 
         if average_cpu_utilization < min_threshold:
 
