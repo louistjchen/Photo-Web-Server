@@ -55,8 +55,8 @@ while True:
     average_cpu_utilization = sum(cpu_utilization) / len(cpu_utilization)
 
     print("Cpu Utilization: "+ str(cpu_utilization))
-    print("Avg Cpu Utilization: "+average_cpu_utilization)
-    print("IDs: "+ids)
+    print("Avg Cpu Utilization: "+str(average_cpu_utilization))
+    print("IDs: "+str(ids))
     print("------------------------------------------")
 
     num_ins = len(instances)
@@ -68,10 +68,10 @@ while True:
         num_of_ins_to_add = num_ins - num_ins_after_add
 
         print("Condition: average_cpu_utilization > max_threshold")
-        print("Num of instances: "+num_ins)
-        print("Num of instances after expand: "+num_ins_after_add)
-        print("Increase Ratio: "+increase_ratio)
-        print("Num of instances to add: "+num_of_ins_to_add)
+        print("Num of instances: "+str(num_ins))
+        print("Num of instances after expand: "+str(num_ins_after_add))
+        print("Increase Ratio: "+str(increase_ratio))
+        print("Num of instances to add: "+str(num_of_ins_to_add))
         print("------------------------------------------")
 
         for i in range(num_of_ins_to_add):
@@ -147,10 +147,10 @@ while True:
 
 
         print("Condition: average_cpu_utilization < min_threshold")
-        print("Num of instances: "+num_ins)
-        print("Num of instances after shrink: "+num_ins_after_shrink)
-        print("Decrease Ratio: "+decrease_ratio)
-        print("Num of instances to remove: "+num_of_ins_to_remove)
+        print("Num of instances: "+str(num_ins))
+        print("Num of instances after shrink: "+str(num_ins_after_shrink))
+        print("Decrease Ratio: "+str(decrease_ratio))
+        print("Num of instances to remove: "+str(num_of_ins_to_remove))
         print("------------------------------------------")
 
         if num_of_ins_to_remove > 0 and num_ins_after_shrink > 0:
