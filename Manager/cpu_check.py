@@ -85,9 +85,8 @@ while True:
 
             ts = calendar.timegm(time.gmtime())
             if num_of_ins_to_add > 0:
-                print("Adding instances...")
                 try:
-
+                    print("Adding instances...")
                     instances = ec2.create_instances(ImageId=ami_id,
                                                      InstanceType='t2.small',
                                                      MinCount = num_of_ins_to_add,
@@ -152,6 +151,7 @@ while True:
                         print("------------------------------------------")
                 except:
                         print("Not allowed to create instances due to the max limit of aws")
+                        print("------------------------------------------")
 
 
         if average_cpu_utilization < min_threshold:
