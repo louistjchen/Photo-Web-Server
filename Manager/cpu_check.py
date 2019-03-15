@@ -54,7 +54,7 @@ while True:
 
     average_cpu_utilization = sum(cpu_utilization) / len(cpu_utilization)
 
-    print("Cpu Utilization: "+ cpu_utilization)
+    print("Cpu Utilization: "+ str(cpu_utilization))
     print("Avg Cpu Utilization: "+average_cpu_utilization)
     print("IDs: "+ids)
     print("------------------------------------------")
