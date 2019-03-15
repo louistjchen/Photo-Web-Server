@@ -7,8 +7,8 @@ import calendar
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
 ami_id = 'ami-09af13d8385ef9965'
-max_threshold = 0.050
-min_threshold = 0.020
+max_threshold = 70
+min_threshold = 20
 
 increase_ratio = 2
 decrease_ratio = 2
@@ -150,7 +150,7 @@ while True:
                         print("Finished Registering for instance with id:"+str(instance.id))
                         print("------------------------------------------")
                 except:
-                        print("Not allowed to create instances due to the max limit of aws")
+                        print("Failed to create instances due to reaching the max limit")
                         print("------------------------------------------")
 
 
