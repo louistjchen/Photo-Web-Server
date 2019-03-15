@@ -7,8 +7,8 @@ import calendar
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
 ami_id = 'ami-09af13d8385ef9965'
-max_threshold = 30
-min_threshold = 20
+max_threshold = 0.5
+min_threshold = 0.1
 
 increase_ratio = 2
 decrease_ratio = 2
@@ -67,7 +67,7 @@ while True:
 
         if average_cpu_utilization > max_threshold:
 
-            num_ins_after_add =  num_ins * increase_ratio
+            num_ins_after_add = int(num_ins * increase_ratio)
 
             num_of_ins_to_add = num_ins_after_add - num_ins
 
@@ -79,34 +79,34 @@ while True:
             print("Num of instances to add: "+str(num_of_ins_to_add))
             print("------------------------------------------")
 
-            for i in range(num_of_ins_to_add):
-                print("Adding instance...")
-                ts = calendar.timegm(time.gmtime())
-                instances = ec2.create_instances(ImageId=ami_id,
-                                                 InstanceType='t2.small',
-                                                 MinCount=1,
-                                                 MaxCount=1,
-                                                 Monitoring={'Enabled': True},
-                                                 SecurityGroups=[
-                                                     'ece1779',
-                                                 ],
-                                                 KeyName='ece1779',
-                                                 TagSpecifications=[
-                                                     {
-                                                         'ResourceType': 'instance',
-                                                         'Tags': [
-                                                             {
-                                                                 'Key': 'Group',
-                                                                 'Value': 'User Instance'
-                                                             },
-                                                             {
-                                                                 'Key': 'Name',
-                                                                 'Value': str(ts)
-                                                             },
-                                                         ]
-                                                     },
-                                                 ]
-                                                 )
+            ts = calendar.timegm(time.gmtime())
+            print("Adding instances...")
+
+            instances = ec2.create_instances(ImageId=ami_id,
+                                             InstanceType='t2.small',
+                                             MinCount = num_of_ins_to_add,
+                                             MaxCount = num_of_ins_to_add,
+                                             Monitoring={'Enabled': True},
+                                             SecurityGroups=[
+                                                 'ece1779',
+                                             ],
+                                             KeyName='ece1779',
+                                             TagSpecifications=[
+                                                 {
+                                                     'ResourceType': 'instance',
+                                                     'Tags': [
+                                                         {
+                                                             'Key': 'Group',
+                                                             'Value': 'User Instance'
+                                                         },
+                                                         {
+                                                             'Key': 'Name',
+                                                             'Value': str(ts)
+                                                         },
+                                                     ]
+                                                 },
+                                             ]
+                                             )
 
             for instance in instances:
                 ec2 = boto3.resource('ec2')
