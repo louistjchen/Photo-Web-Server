@@ -63,7 +63,7 @@ while True:
 
     if average_cpu_utilization > max_threshold:
 
-        num_ins_after_add =  num_ids * increase_ratio
+        num_ins_after_add =  num_ins * increase_ratio
 
         num_of_ins_to_add = num_ins - num_ins_after_add
 
@@ -141,7 +141,7 @@ while True:
 
     if average_cpu_utilization < min_threshold:
 
-        num_ins_after_shrink = num_ids / decrease_ratio
+        num_ins_after_shrink = num_ins / decrease_ratio
 
         num_of_ins_to_remove = num_ins - num_ins_after_shrink
 
