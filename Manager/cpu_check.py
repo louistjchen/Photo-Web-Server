@@ -67,7 +67,7 @@ while True:
 
             num_ins_after_add =  num_ins * increase_ratio
 
-            num_of_ins_to_add = num_ins - num_ins_after_add
+            num_of_ins_to_add = num_ins_after_add - num_ins
 
             print("Condition: average_cpu_utilization > max_threshold")
             print("Num of instances: "+str(num_ins))
