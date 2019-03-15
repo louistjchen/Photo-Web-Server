@@ -39,8 +39,8 @@ while True:
 
         cpu_1 = client.get_metric_statistics(
             Period=60,
-            StartTime=datetime.utcnow() - timedelta(seconds=1 * 60),
-            EndTime=datetime.utcnow() - timedelta(seconds=0 * 60),
+            StartTime=datetime.utcnow() - timedelta(seconds=2 * 60),
+            EndTime=datetime.utcnow() - timedelta(seconds=1 * 60),
             MetricName='CPUUtilization',
             Namespace='AWS/EC2',
             Unit='Percent',
