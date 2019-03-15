@@ -54,7 +54,8 @@ while True:
             load = point['Average']
             cpu_utilization.append(load)
 
-    if len(cpu_utilization) != 0:
+    # if len(cpu_utilization) != 0:
+    if len(ids) <3:
 
         average_cpu_utilization = sum(cpu_utilization) / len(cpu_utilization)
 
@@ -121,6 +122,7 @@ while True:
                     ],
                 )
 
+                print(instance.id)
                 client = boto3.client('elbv2')
                 client.register_targets(
                     TargetGroupArn=target_group,
@@ -131,6 +133,7 @@ while True:
                     ]
                 )
 
+                print(instance.id)
                 waiter = client.get_waiter('target_in_service')
                 waiter.wait(
                     TargetGroupArn=target_group,
