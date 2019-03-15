@@ -155,6 +155,10 @@ while True:
             print("Num of instances to remove: "+str(num_of_ins_to_remove))
             print("------------------------------------------")
 
+            if num_ins_after_shrink <=0:
+                print("No need to remove the instance")
+                print("------------------------------------------")
+
             if num_of_ins_to_remove > 0 and num_ins_after_shrink > 0:
                 ids_to_remove = ids[:num_ins_after_shrink]
 
