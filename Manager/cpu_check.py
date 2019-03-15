@@ -50,7 +50,7 @@ while True:
         )
 
         for point in cpu_1['Datapoints']:
-
+            print(point)
             load = point['Average']
             cpu_stats_1.append(load)
 
