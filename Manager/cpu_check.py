@@ -1,10 +1,11 @@
 import boto3
 import time
-import mysql.connector
-from flask import render_template, redirect, url_for, request, g
 from datetime import datetime, timedelta
 import calendar
-
+import sys
+import logging
+import rds_config
+import pymysql
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
 ami_id = 'ami-09af13d8385ef9965'
@@ -15,22 +16,13 @@ db_config = {'user': 'master',
              'database': 'a2'}
 
 
-def connect_to_database():
-    return mysql.connector.connect(user=db_config['user'],
-                                   password=db_config['password'],
-                                   host=db_config['host'],
-                                   database=db_config['database'])
+try:
+    conn = pymysql.connect(db_config['host'], user=db_config['user'], passwd=db_config['password'], db=db_config['database'])
+except:
+    logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
+    sys.exit()
 
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = connect_to_database()
-    return db
-
-
-cnx = get_db()
-cursor = cnx.cursor()
+cursor = conn.cursor()
 
 cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
 
