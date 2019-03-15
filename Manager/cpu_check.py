@@ -2,6 +2,8 @@ import boto3
 import time
 
 from datetime import datetime, timedelta
+import calendar
+
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
 
