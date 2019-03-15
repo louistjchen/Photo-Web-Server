@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
 
-max_threshold = 15
-min_threshold = 10
+max_threshold = 0.15
+min_threshold = 0.10
 
 increase_ratio = 2
 decrease_ratio = 2
