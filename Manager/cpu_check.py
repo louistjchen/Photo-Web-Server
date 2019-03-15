@@ -6,7 +6,7 @@ import calendar
 
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
-
+ami_id = 'ami-09af13d8385ef9965'
 max_threshold = 0.15
 min_threshold = 0.10
 
@@ -82,7 +82,7 @@ while True:
             for i in range(num_of_ins_to_add):
                 print("Adding instance...")
                 ts = calendar.timegm(time.gmtime())
-                instances = ec2.create_instances(ImageId=config.ami_id,
+                instances = ec2.create_instances(ImageId=ami_id,
                                                  InstanceType='t2.small',
                                                  MinCount=1,
                                                  MaxCount=1,
