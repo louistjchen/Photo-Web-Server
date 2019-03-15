@@ -138,7 +138,6 @@ while True:
                     )
 
                     print("Waiting for instance with id:"+str(instance.id))
-                    print("------------------------------------------")
                     waiter = client.get_waiter('target_in_service')
                     waiter.wait(
                         TargetGroupArn=target_group,
@@ -148,6 +147,9 @@ while True:
                             },
                         ],
                     )
+                    print("Finished Registering for instance with id:"+str(instance.id))
+                    print("------------------------------------------")
+
 
         if average_cpu_utilization < min_threshold:
 
