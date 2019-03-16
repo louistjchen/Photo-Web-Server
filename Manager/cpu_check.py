@@ -22,21 +22,21 @@ except:
 
 cursor = conn.cursor()
 
-cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
+while 1:
 
-for row in cursor:
-    max_threshold = row[1]
-    min_threshold = row[2]
-    increase_ratio = row[3]
-    decrease_ratio = row[4]
+    cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
 
-print("Max threshold:"+ str(max_threshold))
-print("Min threshold:"+ str(min_threshold))
-print("Increase ratio:"+ str(max_threshold))
-print("Decrease ratio:"+ str(max_threshold))
+    for row in cursor:
+        max_threshold = row[1]
+        min_threshold = row[2]
+        increase_ratio = row[3]
+        decrease_ratio = row[4]
 
-
-while 0:
+    print("Max threshold:"+ str(max_threshold))
+    print("Min threshold:"+ str(min_threshold))
+    print("Increase ratio:"+ str(max_threshold))
+    print("Decrease ratio:"+ str(max_threshold))
+    print("------------------------------------------")
 
     ec2 = boto3.resource('ec2')
 
