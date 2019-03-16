@@ -49,7 +49,7 @@
 
 <form action='{{ url_for('set_scale_params') }}' method="post" class="form-signin">
 
-    <div class="alert alert-warning" role="alert" style="visibility: {{ hidden }}">{{ ret_msg if ret_msg != None }}</div>
+    <div class="alert alert-danger" role="alert" style="visibility: {{ hidden }}">{{ ret_msg if ret_msg != None }}</div>
 
     <h1 class="h3 mb-3 font-weight-normal">Set Scale Parameters</h1><br>
 <label>Max threshold (0~100)</label>

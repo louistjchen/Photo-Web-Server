@@ -6,7 +6,7 @@ import sys
 import pymysql
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
-ami_id = 'ami-09af13d8385ef9965'
+ami_id = 'ami-0b7744019a44cee52'
 
 db_config = {'user': 'master',
              'password': 'ece1779pass',
