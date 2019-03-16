@@ -13,16 +13,15 @@ db_config = {'user': 'master',
              'host': 'ece1779.c3z9wvey8adq.us-east-2.rds.amazonaws.com',
              'database': 'a2'}
 
+while True:
 
-try:
-    conn = pymysql.connect(db_config['host'], user=db_config['user'], passwd=db_config['password'], db=db_config['database'])
-except:
-    print("ERROR: Unexpected error: Could not connect to MySQL instance.")
-    sys.exit()
+    try:
+        conn = pymysql.connect(db_config['host'], user=db_config['user'], passwd=db_config['password'], db=db_config['database'])
+    except:
+        print("ERROR: Unexpected error: Could not connect to MySQL instance.")
+        sys.exit()
 
-cursor = conn.cursor()
-
-while 1:
+    cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
 
