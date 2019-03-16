@@ -218,3 +218,48 @@ def s3_list():
     objects = bucket.objects.all()
 
     return render_template("s3_list.html", bucket=bucket, objects=objects)
+
+@webapp.route('/scale_params', methods=['GET'])
+def show_scale_params():
+    cnx = get_db()
+    cursor = cnx.cursor()
+    cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
+    for row in cursor:
+        max_threshold = float(row[1])
+        min_threshold = float(row[2])
+        increase_ratio = float(row[3])
+        decrease_ratio = float(row[4])
+
+    return render_template("scale_params.html", max_threshold = max_threshold,min_threshold=min_threshold,increase_ratio=increase_ratio,decrease_ratio=decrease_ratio, hidden="hidden")
+
+@webapp.route('/scale_params', methods=['POST'])
+def set_scale_params():
+    max_threshold = float(request.form.get('max_threshold', ""))
+    min_threshold = float(request.form.get('min_threshold', ""))
+    increase_ratio = float(request.form.get('increase_ratio', ""))
+    decrease_ratio = float(request.form.get('decrease_ratio', ""))
+
+    ret_msg = ""
+    if decrease_ratio <= 1:
+        ret_msg = "Error: Decrease rato must be greater than 1"
+
+    if increase_ratio <= 1:
+        ret_msg = "Error: Increase rato must be greater than 1"
+
+    if min_threshold <0 or min_threshold>100:
+        ret_msg = "Error: Min Threshold must be between 0 and 100"
+
+    if max_threshold <0 or max_threshold>100:
+        ret_msg = "Error: Max Threshold must be between 0 and 100"
+
+    if ret_msg != "":
+        return render_template("scale_params.html", hidden="visible", ret_msg=ret_msg, max_threshold = max_threshold,min_threshold=min_threshold,increase_ratio=increase_ratio,decrease_ratio=decrease_ratio)
+    else:
+
+        cnx = get_db()
+        cursor = cnx.cursor()
+        cursor.execute('''UPDATE scale_params 
+        SET max_threshold='{}',min_threshold='{}',increase_ratio='{}',decrease_ratio='{}' 
+        WHERE id = '{}';'''.format(max_threshold,min_threshold,increase_ratio,decrease_ratio,1))
+        cnx.commit()
+        return render_template("scale_params.html", hidden="visible", ret_msg="Settings are updated", max_threshold = max_threshold,min_threshold=min_threshold,increase_ratio=increase_ratio,decrease_ratio=decrease_ratio)

@@ -33,8 +33,7 @@
       <ul class="nav navbar-nav navbar-left">
         <li><a href="/main">Worker Pool</a></li>
         <li><a href="/s3_list">S3 List</a></li>
-                  <li><a href="/scale_params">Scale Parameters</a></li>
-
+        <li><a href="/scale_params">Scale Parameters</a></li>
       </ul>
 
 <!--{#      <ul class="nav navbar-nav navbar-right">#}-->
@@ -47,28 +46,32 @@
 
 <div class="container" style="text-align: left;background-color: white;padding: 50px;margin-top: 50px;">
 
-    <form action="{{url_for('s3_delete')}}" method='post' onsubmit='return confirm("Are you sure to delete all data?")'>
-        <input type="submit" value="Delete All Data" class="btn btn-lg btn-primary btn-block">
-    </form>
 
-    <div style=" margin-top: 20px;">
+<form action='{{ url_for('set_scale_params') }}' method="post" class="form-signin">
 
-        <table class="table">
-            <thead>
-            <th>Photo</th>
+    <div class="alert alert-warning" role="alert" style="visibility: {{ hidden }}">{{ ret_msg if ret_msg != None }}</div>
 
-            <th>Last Modified</th>
-            </thead>
-            {% for object in objects %}
-            <tr>
-                <td>{{ object.key }}</td>
+    <h1 class="h3 mb-3 font-weight-normal">Set Scale Parameters</h1><br>
+<label>Max threshold (0~100)</label>
+    <input type="text" placeholder="Max threshold" name="max_threshold" value="{{ max_threshold if max_threshold  != None }}"
+           class="form-control"><br>
+<label>Min threshold (0~100)</label>
 
-                <td>{{ object.last_modified }}</td>
-            </tr>
-            {% endfor %}
+    <input type="text" placeholder="Min threshold" name="min_threshold" value="{{ min_threshold if min_threshold  != None }}"
+           class="form-control"><br>
+<label>Increase ratio (e.g. 2 means double)</label>
 
-        </table>
-    </div>
+    <input type="text" placeholder="Increase ratio" name="increase_ratio" value="{{ increase_ratio if increase_ratio  != None }}"
+           class="form-control"><br>
+<label>Decrease ratio (e.g. 4 means shrink 75%)</label>
+
+    <input type="text" placeholder="Decrease ratio" name="decrease_ratio" value="{{ decrease_ratio if decrease_ratio  != None }}"
+           class="form-control"><br>
+
+    <input type="submit" value="Submit" class="btn btn-lg btn-primary btn-block" style="margin-bottom: 20px">
+
+</form>
+
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
