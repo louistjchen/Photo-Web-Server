@@ -27,15 +27,15 @@ while 1:
     cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
 
     for row in cursor:
-        max_threshold = row[1]
-        min_threshold = row[2]
-        increase_ratio = row[3]
-        decrease_ratio = row[4]
+        max_threshold = float(row[1])
+        min_threshold = float(row[2])
+        increase_ratio = float(row[3])
+        decrease_ratio = float(row[4])
 
-    print("Max threshold:"+ str(max_threshold))
-    print("Min threshold:"+ str(min_threshold))
-    print("Increase ratio:"+ str(max_threshold))
-    print("Decrease ratio:"+ str(max_threshold))
+    print("Max threshold:" + str(max_threshold))
+    print("Min threshold:" + str(min_threshold))
+    print("Increase ratio:" + str(increase_ratio))
+    print("Decrease ratio:" + str(decrease_ratio))
     print("------------------------------------------")
 
     ec2 = boto3.resource('ec2')
