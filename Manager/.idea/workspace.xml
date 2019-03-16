@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a8bb993-2ec1-4dfb-bde0-a55ab05bfd00" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/aws.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/aws.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ec2_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ec2_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/ec2_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/ec2_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/s3_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/s3_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpu_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/cpu_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/auto_scaling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../User/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../User/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +15,7 @@
     <SUITE FILE_PATH="coverage/Manager$run.coverage" NAME="run Coverage Results" MODIFIED="1552699497757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6520052">
+    <splitter split-orientation="horizontal" split-proportion="0.5271669">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -92,18 +87,6 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/cpu_check.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="157">
-                  <caret line="32" column="38" lean-forward="true" selection-start-line="28" selection-start-column="4" selection-end-line="32" selection-end-column="38" />
-                  <folding>
-                    <element signature="e#0#12#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/run.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="90">
@@ -117,10 +100,10 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/cpu_check.py">
+            <entry file="file://$PROJECT_DIR$/app/aws.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2179">
-                  <caret line="34" column="46" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="46" />
+                <state relative-caret-position="462">
+                  <caret line="264" column="67" selection-start-line="264" selection-start-column="60" selection-end-line="264" selection-end-column="67" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                   </folding>
@@ -129,10 +112,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/aws.py">
+            <entry file="file://$PROJECT_DIR$/auto_scaling.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="432">
-                  <caret line="264" column="67" selection-start-line="264" selection-start-column="60" selection-end-line="264" selection-end-column="67" />
+                <state relative-caret-position="345">
+                  <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                   </folding>
@@ -199,6 +182,7 @@
         <option value="$PROJECT_DIR$/app/templates/ec2_details.html" />
         <option value="$PROJECT_DIR$/app/aws.py" />
         <option value="$PROJECT_DIR$/app/templates/scale_params.html" />
+        <option value="$PROJECT_DIR$/auto_scaling.py" />
       </list>
     </option>
   </component>
@@ -347,12 +331,12 @@
       <updated>1542149715666</updated>
       <workItem from="1552368296463" duration="14406000" />
       <workItem from="1552384606466" duration="250000" />
-      <workItem from="1552621316443" duration="17940000" />
+      <workItem from="1552621316443" duration="18159000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32651000" />
+    <option name="totallyTimeSpent" value="32870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -368,7 +352,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.056166057" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21367522" />
       <window_info id="Project Explorer" order="2" weight="0.32980973" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="DB Browser" order="4" weight="0.32980973" />
@@ -377,14 +361,14 @@
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32905984" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.3611111" />
+      <window_info anchor="bottom" id="Run" order="4" weight="0.3611111" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.39957264" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32905984" />
       <window_info anchor="bottom" id="Console" order="9" />
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32905984" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="14" />
@@ -533,18 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cpu_check.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="32" column="38" lean-forward="true" selection-start-line="28" selection-start-column="4" selection-end-line="32" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/aws.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="264" column="67" selection-start-line="264" selection-start-column="60" selection-end-line="264" selection-end-column="67" />
+        <state relative-caret-position="-2179">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="46" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
@@ -555,6 +529,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/aws.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="264" column="67" selection-start-line="264" selection-start-column="60" selection-end-line="264" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/auto_scaling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

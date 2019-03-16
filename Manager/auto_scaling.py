@@ -24,7 +24,7 @@ cursor = conn.cursor()
 
 while 1:
 
-    cursor.execute("SELECT * FROM scale_params.html WHERE id = '{}';".format(1))
+    cursor.execute("SELECT * FROM scale_params WHERE id = '{}';".format(1))
 
     for row in cursor:
         max_threshold = float(row[1])
