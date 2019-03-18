@@ -208,4 +208,4 @@ while True:
         print("No CPU results")
         print("------------------------------------------")
 
-    time.sleep(5)
+    time.sleep(60)
