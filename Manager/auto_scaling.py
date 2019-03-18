@@ -4,9 +4,11 @@ from datetime import datetime, timedelta
 import calendar
 import sys
 import pymysql
+from botocore.exceptions import ClientError
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
-ami_id = 'ami-073778145c35aefd1'
+# ami_id = 'ami-073778145c35aefd1'
+ami_id = 'ami-073778145c35aefd'
 
 db_config = {'user': 'master',
              'password': 'ece1779pass',
