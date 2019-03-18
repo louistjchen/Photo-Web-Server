@@ -171,9 +171,9 @@ while True:
                         )
                         print("Finished Registering for instance with id:"+str(instance.id))
                         print("------------------------------------------")
-                except e:
+                except ValueError as ve:
                         print("Failed to create instances due to some error")
-                        print(e)
+                        print(ve)
                         print("------------------------------------------")
 
 
