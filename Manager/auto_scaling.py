@@ -6,7 +6,7 @@ import sys
 import pymysql
 
 target_group = 'arn:aws:elasticloadbalancing:us-east-1:560806999447:targetgroup/a2targetgroup/2f5dcca03fdf3575'
-ami_id = 'ami-0b7744019a44cee52'
+ami_id = 'ami-073778145c35aefd1'
 
 db_config = {'user': 'master',
              'password': 'ece1779pass',
@@ -171,9 +171,9 @@ while True:
                         )
                         print("Finished Registering for instance with id:"+str(instance.id))
                         print("------------------------------------------")
-                except ValueError as ve:
+                except ClientError as e:
                         print("Failed to create instances due to some error")
-                        print(ve)
+                        print(e)
                         print("------------------------------------------")
 
 
