@@ -132,7 +132,7 @@ def ec2_details(id):
                      'Value': id}]
     )
 
-    print(cpu)
+    # print(cpu)
     cpu_stats = []
 
     for point in cpu['Datapoints']:
