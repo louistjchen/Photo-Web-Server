@@ -207,5 +207,6 @@ while True:
     else:
         print("No CPU results")
         print("------------------------------------------")
-
+    print("Wait for 60s")
+    print("------------------------------------------")
     time.sleep(60)
