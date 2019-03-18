@@ -8,6 +8,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.db import *
 
+image_format = ['.jpg', '.jpeg', '.bmp', '.png', '.gif', '.tif']
+
 
 def get_image_extension(name):
     ret = ""
@@ -94,8 +96,9 @@ def api_upload():
     # upload file onto database
     filename = new_file.filename
     extension = get_image_extension(filename)
-    if extension == "":
-        extension = ".jpg"
+    if extension not in image_format:
+        return jsonify({'HTTP Status Code' : 400,
+                        "Message" : "Error: Input file must be of type JPEG/BMP/PNG/GIF/TIFF"})
 
     # if user does not select file, browser also
     # submit a empty part without filename
