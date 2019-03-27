@@ -19,7 +19,7 @@ while True:
     try:
         conn = pymysql.connect(db_config['host'], user=db_config['user'], passwd=db_config['password'], db=db_config['database'])
     except:
-        #print("ERROR: Unexpected error: Could not connect to MySQL instance.")
+        print("ERROR: Unexpected error: Could not connect to MySQL instance.")
         sys.exit()
 
     cursor = conn.cursor()
@@ -32,11 +32,11 @@ while True:
         increase_ratio = float(row[3])
         decrease_ratio = float(row[4])
 
-    #print("Max threshold:" + str(max_threshold))
-    #print("Min threshold:" + str(min_threshold))
-    #print("Increase ratio:" + str(increase_ratio))
-    #print("Decrease ratio:" + str(decrease_ratio))
-    #print("------------------------------------------")
+    print("Max threshold:" + str(max_threshold))
+    print("Min threshold:" + str(min_threshold))
+    print("Increase ratio:" + str(increase_ratio))
+    print("Decrease ratio:" + str(decrease_ratio))
+    print("------------------------------------------")
 
     ec2 = boto3.resource('ec2')
 
@@ -80,10 +80,10 @@ while True:
 
         average_cpu_utilization = sum(cpu_utilization) / len(cpu_utilization)
 
-        #print("Cpu Utilization: "+ str(cpu_utilization))
-        #print("Avg Cpu Utilization: "+str(average_cpu_utilization))
-        #print("IDs: "+str(ids))
-        #print("------------------------------------------")
+        print("Cpu Utilization: "+ str(cpu_utilization))
+        print("Avg Cpu Utilization: "+str(average_cpu_utilization))
+        print("IDs: "+str(ids))
+        print("------------------------------------------")
 
         num_ins = len(ids)
 
@@ -92,24 +92,24 @@ while True:
             num_ins_after_add = int(num_ins * increase_ratio)
 
             if num_ins_after_add > 19:
-                #print("Reach the max number of instances")
-                #print("------------------------------------------")
+                print("Reach the max number of instances")
+                print("------------------------------------------")
                 num_ins_after_add = 19
 
             num_of_ins_to_add = num_ins_after_add - num_ins
 
-            #print("Condition: average_cpu_utilization > max_threshold")
-            #print("Num of instances: "+str(num_ins))
-            #print("Num of instances after expand: "+str(num_ins_after_add))
-            #print("Increase Ratio: "+str(increase_ratio))
-            #print("Max Threshold: "+str(max_threshold))
-            #print("Num of instances to add: "+str(num_of_ins_to_add))
-            #print("------------------------------------------")
+            print("Condition: average_cpu_utilization > max_threshold")
+            print("Num of instances: "+str(num_ins))
+            print("Num of instances after expand: "+str(num_ins_after_add))
+            print("Increase Ratio: "+str(increase_ratio))
+            print("Max Threshold: "+str(max_threshold))
+            print("Num of instances to add: "+str(num_of_ins_to_add))
+            print("------------------------------------------")
 
             ts = calendar.timegm(time.gmtime())
             if num_of_ins_to_add > 0:
                 try:
-                    #print("Adding instances...")
+                    print("Adding instances...")
                     instances = ec2.create_instances(ImageId=ami_id,
                                                      InstanceType='t2.small',
                                                      MinCount = num_of_ins_to_add,
@@ -149,7 +149,7 @@ while True:
                             ],
                         )
 
-                        #print("Registering instance with id:"+str(instance.id))
+                        print("Registering instance with id:"+str(instance.id))
                         client = boto3.client('elbv2')
                         client.register_targets(
                             TargetGroupArn=target_group,
@@ -160,7 +160,7 @@ while True:
                             ]
                         )
 
-                        #print("Waiting for instance with id:"+str(instance.id))
+                        print("Waiting for instance with id:"+str(instance.id))
                         waiter = client.get_waiter('target_in_service')
                         waiter.wait(
                             TargetGroupArn=target_group,
@@ -170,12 +170,12 @@ while True:
                                 },
                             ],
                         )
-                        #print("Finished Registering for instance with id:"+str(instance.id))
-                        #print("------------------------------------------")
+                        print("Finished Registering for instance with id:"+str(instance.id))
+                        print("------------------------------------------")
                 except ClientError as e:
-                    #print("Failed to create instances due to error:")
-                    #print(e)
-                    #print("------------------------------------------")
+                    print("Failed to create instances due to error:")
+                    print(e)
+                    print("------------------------------------------")
                     pass
 
 
@@ -186,30 +186,30 @@ while True:
             num_of_ins_to_remove = num_ins - num_ins_after_shrink
 
 
-            #print("Condition: average_cpu_utilization < min_threshold")
-            #print("Num of instances: "+str(num_ins))
-            #print("Num of instances after shrink: "+str(num_ins_after_shrink))
-            #print("Decrease Ratio: "+str(decrease_ratio))
-            #print("Min Threshold: "+str(min_threshold))
-            #print("Num of instances to remove: "+str(num_of_ins_to_remove))
-            #print("------------------------------------------")
+            print("Condition: average_cpu_utilization < min_threshold")
+            print("Num of instances: "+str(num_ins))
+            print("Num of instances after shrink: "+str(num_ins_after_shrink))
+            print("Decrease Ratio: "+str(decrease_ratio))
+            print("Min Threshold: "+str(min_threshold))
+            print("Num of instances to remove: "+str(num_of_ins_to_remove))
+            print("------------------------------------------")
 
             if num_ins_after_shrink <=0:
-                #print("No need to remove the instance")
-                #print("------------------------------------------")
+                print("No need to remove the instance")
+                print("------------------------------------------")
                 pass
 
             if num_of_ins_to_remove > 0 and num_ins_after_shrink > 0:
                 ids_to_remove = ids[:num_ins_after_shrink]
 
                 for id in ids_to_remove:
-                    #print("Removing instance...")
+                    print("Removing instance...")
                     ec2.instances.filter(InstanceIds=[id]).terminate()
-                    #print("Removed instance: "+ str(id))
+                    print("Removed instance: "+ str(id))
     else:
-        #print("No CPU results")
-        #print("------------------------------------------")
+        print("No CPU results")
+        print("------------------------------------------")
         pass
-    #print("Wait for 60s")
-    #print("------------------------------------------")
+    print("Wait for 60s")
+    print("------------------------------------------")
     time.sleep(60)
