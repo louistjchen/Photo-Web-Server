@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../static/css/manager.css">
+
+<html>
+<head>
+    <title>ECE1779 Assignment 2</title>
+</head>
+
+
+
+    <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PhotoWebServer</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="/main">Worker Pool</a></li>
+        <li><a href="/s3_list">S3 List</a></li>
+                  <li><a href="/scale_params">Scale Parameters</a></li>
+
+      </ul>
+
+<!--{#      <ul class="nav navbar-nav navbar-right">#}-->
+<!--{#        <li><a href="#">Link</a></li>#}-->
+<!--{#      </ul>#}-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" style="text-align: left;background-color: white;padding: 50px;margin-top: 50px;">
+    <h3>Instance Info</h3>
+
+        <table class="table">
+                        <thead>
+
+             <th>Key</th>
+             <th>Name</th>
+                        </thead>
+        <tr><td>Id</td><td> {{ instance.id }}</td></tr>
+        <tr><td>Image Id</td><td> {{ instance.image_id }}</td></tr>
+        <tr><td>Key Name </td><td> {{ instance.key_name }}</td></tr>
+        <tr><td>Public IP Address</td><td>{{ instance.public_ip_address }}</td></tr>
+        <tr><td>State</td><td>{{ instance.state['Name'] }}</td></tr>
+    </table>
+
+
+
+    <h3>CPU Utilization</h3>
+
+   <div style="width:800px;">
+        <canvas id="cpuChart"></canvas>
+
+    </div>
+    <h3>HTTP Request Rate</h3>
+
+    <div style="width:800px;">
+        <canvas id="httpChart"></canvas>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+
+<script>
+var ctx = document.getElementById("httpChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [{% for item in labels %}
+                    "{{item}}",
+                  {% endfor %}],
+        datasets: [{
+            label:"HTTP Request Rate",
+            data: [{% for item in values %}
+                      "{{item}}",
+                    {% endfor %}],
+            borderColor: [
+                '#007bff'
+
+            ],
+            borderWidth: 1,
+            fill:false
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Mins Ago'
+                }
+                    }],
+            yAxes: [{
+
+                scaleLabel: {
+                    display: true,
+                    labelString: '# of requests'
+                },
+                ticks: {
+                    beginAtZero:true,
+                    stepSize: 1
+                }
+
+            }]
+        }
+    }
+});
+
+var cpu_ctx = document.getElementById("cpuChart");
+var cpu_myChart = new Chart(cpu_ctx, {
+    type: 'line',
+    data: {
+        labels: [{% for item in cpu_labels %}
+                    "{{item}}",
+                  {% endfor %}],
+        datasets: [{
+            label:"CPU Utilization ( Percent )",
+            data: [{% for item in cpu_values %}
+                      "{{item}}",
+                    {% endfor %}],
+            borderColor: [
+                '#007bff'
+
+            ],
+            borderWidth: 1,
+            fill:false
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time (UTC Time Zone)',
+                },
+                ticks: {
+                    stepSize: 5
+                }
+                    }],
+            yAxes: [{
+
+                scaleLabel: {
+                    display: true,
+                    labelString: 'CPU Utilization (Percent)'
+                },
+                ticks: {
+                    beginAtZero:true,
+                    stepSize: 10
+                }
+
+            }]
+        }
+    }
+});
+</script>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>
+
+
