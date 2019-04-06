@@ -15,8 +15,6 @@ db_config = {'user': 'master',
              'host': 'ece1779.c3z9wvey8adq.us-east-2.rds.amazonaws.com',
              'database': 'a2'}
 
-AWSAccessKeyId = 'AKIAJJ3IQ3G2KAR3UR7Q'
-AWSSecretKey = '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'
 bucket = 'photo-web-server'
 
 
@@ -50,11 +48,7 @@ def generate_salt():
 
 def get_s3():
 
-    s3 = boto3.client(
-        "s3",
-        aws_access_key_id=AWSAccessKeyId,
-        aws_secret_access_key=AWSSecretKey
-    )
+    s3 = boto3.client("s3")
     return s3
 
 def upload_file_to_s3(upload, filename):
